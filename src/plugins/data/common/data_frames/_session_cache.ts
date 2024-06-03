@@ -1,0 +1,33 @@
+/*
+ * Copyright OpenSearch Contributors
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+export interface SessionCache {
+  get: (datasource: string) => string | undefined;
+  set: (datasource: string, session: string) => void;
+  clear: () => void;
+}
+
+export function createSessionCache(): SessionCache {
+  let sessionCache: { [key: string]: string } = {};
+
+  const cache: SessionCache = {
+    get: (datasource: string) => {
+      console.log('called get, current cache:', sessionCache);
+      if (datasource in sessionCache) {
+        return sessionCache[datasource];
+      }
+      return undefined;
+    },
+    set: (datasource: string, session: string) => {
+      console.log('called set, current cache:', sessionCache);
+      sessionCache[datasource] = session;
+    },
+    clear: () => {
+      console.log('called clear, current cache:', sessionCache);
+      sessionCache = {};
+    },
+  };
+  return cache;
+}

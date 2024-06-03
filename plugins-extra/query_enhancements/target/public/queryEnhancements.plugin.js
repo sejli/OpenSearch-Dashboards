@@ -87,9 +87,9 @@
 /******/ ({
 
 /***/ "../../node_modules/css-loader/dist/cjs.js?!../../node_modules/postcss-loader/dist/cjs.js?!../../node_modules/comment-stripper/index.js?!../../node_modules/sass-loader/dist/cjs.js?!./public/index.scss?v7dark":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/css-loader/dist/cjs.js??ref--6-oneOf-0-1!/home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/postcss-loader/dist/cjs.js??ref--6-oneOf-0-2!/home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/comment-stripper??ref--6-oneOf-0-3!/home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/sass-loader/dist/cjs.js??ref--6-oneOf-0-4!./public/index.scss?v7dark ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/css-loader/dist/cjs.js??ref--6-oneOf-0-1!/Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/postcss-loader/dist/cjs.js??ref--6-oneOf-0-2!/Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/comment-stripper??ref--6-oneOf-0-3!/Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/sass-loader/dist/cjs.js??ref--6-oneOf-0-4!./public/index.scss?v7dark ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -112,9 +112,9 @@ ___CSS_LOADER_EXPORT___.push([module.i, "/*!\n * SPDX-License-Identifier: Apache
 /***/ }),
 
 /***/ "../../node_modules/css-loader/dist/cjs.js?!../../node_modules/postcss-loader/dist/cjs.js?!../../node_modules/comment-stripper/index.js?!../../node_modules/sass-loader/dist/cjs.js?!./public/index.scss?v7light":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!/home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/postcss-loader/dist/cjs.js??ref--6-oneOf-1-2!/home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/comment-stripper??ref--6-oneOf-1-3!/home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/sass-loader/dist/cjs.js??ref--6-oneOf-1-4!./public/index.scss?v7light ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/css-loader/dist/cjs.js??ref--6-oneOf-1-1!/Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/postcss-loader/dist/cjs.js??ref--6-oneOf-1-2!/Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/comment-stripper??ref--6-oneOf-1-3!/Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/sass-loader/dist/cjs.js??ref--6-oneOf-1-4!./public/index.scss?v7light ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -137,9 +137,9 @@ ___CSS_LOADER_EXPORT___.push([module.i, "/*!\n * SPDX-License-Identifier: Apache
 /***/ }),
 
 /***/ "../../node_modules/css-loader/dist/cjs.js?!../../node_modules/postcss-loader/dist/cjs.js?!../../node_modules/comment-stripper/index.js?!../../node_modules/sass-loader/dist/cjs.js?!./public/index.scss?v8dark":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/css-loader/dist/cjs.js??ref--6-oneOf-2-1!/home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/postcss-loader/dist/cjs.js??ref--6-oneOf-2-2!/home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/comment-stripper??ref--6-oneOf-2-3!/home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/sass-loader/dist/cjs.js??ref--6-oneOf-2-4!./public/index.scss?v8dark ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/css-loader/dist/cjs.js??ref--6-oneOf-2-1!/Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/postcss-loader/dist/cjs.js??ref--6-oneOf-2-2!/Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/comment-stripper??ref--6-oneOf-2-3!/Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/sass-loader/dist/cjs.js??ref--6-oneOf-2-4!./public/index.scss?v8dark ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -162,9 +162,9 @@ ___CSS_LOADER_EXPORT___.push([module.i, "/*!\n * SPDX-License-Identifier: Apache
 /***/ }),
 
 /***/ "../../node_modules/css-loader/dist/cjs.js?!../../node_modules/postcss-loader/dist/cjs.js?!../../node_modules/comment-stripper/index.js?!../../node_modules/sass-loader/dist/cjs.js?!./public/index.scss?v8light":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!/home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/postcss-loader/dist/cjs.js??ref--6-oneOf-3-2!/home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/comment-stripper??ref--6-oneOf-3-3!/home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/sass-loader/dist/cjs.js??ref--6-oneOf-3-4!./public/index.scss?v8light ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!/Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/postcss-loader/dist/cjs.js??ref--6-oneOf-3-2!/Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/comment-stripper??ref--6-oneOf-3-3!/Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/sass-loader/dist/cjs.js??ref--6-oneOf-3-4!./public/index.scss?v8light ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -187,9 +187,9 @@ ___CSS_LOADER_EXPORT___.push([module.i, "/*!\n * SPDX-License-Identifier: Apache
 /***/ }),
 
 /***/ "../../node_modules/css-loader/dist/runtime/api.js":
-/*!**********************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/css-loader/dist/runtime/api.js ***!
-  \**********************************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/css-loader/dist/runtime/api.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -264,9 +264,9 @@ module.exports = function (cssWithMappingToString) {
 /***/ }),
 
 /***/ "../../node_modules/css-loader/dist/runtime/cssWithMappingToString.js":
-/*!*****************************************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/css-loader/dist/runtime/cssWithMappingToString.js ***!
-  \*****************************************************************************************************************/
+/*!*******************************************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/css-loader/dist/runtime/cssWithMappingToString.js ***!
+  \*******************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -311,9 +311,9 @@ module.exports = function cssWithMappingToString(item) {
 /***/ }),
 
 /***/ "../../node_modules/node-libs-browser/node_modules/punycode/punycode.js":
-/*!*******************************************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/node-libs-browser/node_modules/punycode/punycode.js ***!
-  \*******************************************************************************************************************/
+/*!*********************************************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/node-libs-browser/node_modules/punycode/punycode.js ***!
+  \*********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -842,9 +842,9 @@ module.exports = function cssWithMappingToString(item) {
 /***/ }),
 
 /***/ "../../node_modules/node-libs-browser/node_modules/url/url.js":
-/*!*********************************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/node-libs-browser/node_modules/url/url.js ***!
-  \*********************************************************************************************************/
+/*!***********************************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/node-libs-browser/node_modules/url/url.js ***!
+  \***********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1586,9 +1586,9 @@ Url.prototype.parseHost = function() {
 /***/ }),
 
 /***/ "../../node_modules/node-libs-browser/node_modules/url/util.js":
-/*!**********************************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/node-libs-browser/node_modules/url/util.js ***!
-  \**********************************************************************************************************/
+/*!************************************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/node-libs-browser/node_modules/url/util.js ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1614,9 +1614,9 @@ module.exports = {
 /***/ }),
 
 /***/ "../../node_modules/querystring-es3/decode.js":
-/*!*****************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/querystring-es3/decode.js ***!
-  \*****************************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/querystring-es3/decode.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1710,9 +1710,9 @@ var isArray = Array.isArray || function (xs) {
 /***/ }),
 
 /***/ "../../node_modules/querystring-es3/encode.js":
-/*!*****************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/querystring-es3/encode.js ***!
-  \*****************************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/querystring-es3/encode.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1807,9 +1807,9 @@ var objectKeys = Object.keys || function (obj) {
 /***/ }),
 
 /***/ "../../node_modules/querystring-es3/index.js":
-/*!****************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/querystring-es3/index.js ***!
-  \****************************************************************************************/
+/*!******************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/querystring-es3/index.js ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1823,9 +1823,9 @@ exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ "../../
 /***/ }),
 
 /***/ "../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
-/*!*********************************************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
-  \*********************************************************************************************************************/
+/*!***********************************************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
+  \***********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2103,9 +2103,9 @@ module.exports = function (list, options) {
 /***/ }),
 
 /***/ "../../node_modules/val-loader/dist/cjs.js?key=queryEnhancements!../../packages/osd-ui-shared-deps/public_path_module_creator.js":
-/*!*****************************************************************************************************************************************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/node_modules/val-loader/dist/cjs.js?key=queryEnhancements!/home/ubuntu/repos/OpenSearch-Dashboards-1/packages/osd-ui-shared-deps/public_path_module_creator.js ***!
-  \*****************************************************************************************************************************************************************************************************************/
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/node_modules/val-loader/dist/cjs.js?key=queryEnhancements!/Users/lnse/opensearch/OpenSearch-Dashboards/packages/osd-ui-shared-deps/public_path_module_creator.js ***!
+  \*********************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2178,9 +2178,9 @@ module.exports = function(module) {
 /***/ }),
 
 /***/ "../../packages/osd-optimizer/target/worker/entry_point_creator.js":
-/*!**************************************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/packages/osd-optimizer/target/worker/entry_point_creator.js ***!
-  \**************************************************************************************************************/
+/*!****************************************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/packages/osd-optimizer/target/worker/entry_point_creator.js ***!
+  \****************************************************************************************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2193,9 +2193,9 @@ __osdBundles__.define('plugin/queryEnhancements/public', __webpack_require__, /*
 /***/ }),
 
 /***/ "../../packages/osd-std/target/web/assert_never.js":
-/*!**********************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/packages/osd-std/target/web/assert_never.js ***!
-  \**********************************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/packages/osd-std/target/web/assert_never.js ***!
+  \************************************************************************************************/
 /*! exports provided: assertNever */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2245,9 +2245,9 @@ function assertNever(x) {
 /***/ }),
 
 /***/ "../../packages/osd-std/target/web/clean.js":
-/*!***************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/packages/osd-std/target/web/clean.js ***!
-  \***************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/packages/osd-std/target/web/clean.js ***!
+  \*****************************************************************************************/
 /*! exports provided: cleanControlSequences */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2300,9 +2300,9 @@ const cleanControlSequences = text => {
 /***/ }),
 
 /***/ "../../packages/osd-std/target/web/deep_freeze.js":
-/*!*********************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/packages/osd-std/target/web/deep_freeze.js ***!
-  \*********************************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/packages/osd-std/target/web/deep_freeze.js ***!
+  \***********************************************************************************************/
 /*! exports provided: deepFreeze */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2361,9 +2361,9 @@ function deepFreeze(object) {
 /***/ }),
 
 /***/ "../../packages/osd-std/target/web/get.js":
-/*!*************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/packages/osd-std/target/web/get.js ***!
-  \*************************************************************************************/
+/*!***************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/packages/osd-std/target/web/get.js ***!
+  \***************************************************************************************/
 /*! exports provided: get */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2423,9 +2423,9 @@ function get(obj, path) {
 /***/ }),
 
 /***/ "../../packages/osd-std/target/web/get_flattened_object.js":
-/*!******************************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/packages/osd-std/target/web/get_flattened_object.js ***!
-  \******************************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/packages/osd-std/target/web/get_flattened_object.js ***!
+  \********************************************************************************************************/
 /*! exports provided: getFlattenedObject */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2498,9 +2498,9 @@ function getFlattenedObject(rootValue) {
 /***/ }),
 
 /***/ "../../packages/osd-std/target/web/index.js":
-/*!***************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/packages/osd-std/target/web/index.js ***!
-  \***************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/packages/osd-std/target/web/index.js ***!
+  \*****************************************************************************************/
 /*! exports provided: assertNever, deepFreeze, get, mapToObject, merge, pick, withTimeout, isRelativeUrl, modifyUrl, getUrlOrigin, unset, getFlattenedObject, validateObject, firstValueFrom, lastValueFrom, parse, stringify, cleanControlSequences */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2604,9 +2604,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "../../packages/osd-std/target/web/json.js":
-/*!**************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/packages/osd-std/target/web/json.js ***!
-  \**************************************************************************************/
+/*!****************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/packages/osd-std/target/web/json.js ***!
+  \****************************************************************************************/
 /*! exports provided: stringify, parse */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2917,9 +2917,9 @@ const parse = (text, reviver) => {
 /***/ }),
 
 /***/ "../../packages/osd-std/target/web/map_to_object.js":
-/*!***********************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/packages/osd-std/target/web/map_to_object.js ***!
-  \***********************************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/packages/osd-std/target/web/map_to_object.js ***!
+  \*************************************************************************************************/
 /*! exports provided: mapToObject */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2967,9 +2967,9 @@ function mapToObject(map) {
 /***/ }),
 
 /***/ "../../packages/osd-std/target/web/merge.js":
-/*!***************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/packages/osd-std/target/web/merge.js ***!
-  \***************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/packages/osd-std/target/web/merge.js ***!
+  \*****************************************************************************************/
 /*! exports provided: merge */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3044,9 +3044,9 @@ const mergeObjects = (baseObj, overrideObj) => [...new Set([...Object.keys(baseO
 /***/ }),
 
 /***/ "../../packages/osd-std/target/web/pick.js":
-/*!**************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/packages/osd-std/target/web/pick.js ***!
-  \**************************************************************************************/
+/*!****************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/packages/osd-std/target/web/pick.js ***!
+  \****************************************************************************************/
 /*! exports provided: pick */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3095,9 +3095,9 @@ function pick(obj, keys) {
 /***/ }),
 
 /***/ "../../packages/osd-std/target/web/promise.js":
-/*!*****************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/packages/osd-std/target/web/promise.js ***!
-  \*****************************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/packages/osd-std/target/web/promise.js ***!
+  \*******************************************************************************************/
 /*! exports provided: withTimeout */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3146,9 +3146,9 @@ function withTimeout(_ref) {
 /***/ }),
 
 /***/ "../../packages/osd-std/target/web/rxjs_7.js":
-/*!****************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/packages/osd-std/target/web/rxjs_7.js ***!
-  \****************************************************************************************/
+/*!******************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/packages/osd-std/target/web/rxjs_7.js ***!
+  \******************************************************************************************/
 /*! exports provided: firstValueFrom, lastValueFrom */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3200,9 +3200,9 @@ function lastValueFrom(source) {
 /***/ }),
 
 /***/ "../../packages/osd-std/target/web/unset.js":
-/*!***************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/packages/osd-std/target/web/unset.js ***!
-  \***************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/packages/osd-std/target/web/unset.js ***!
+  \*****************************************************************************************/
 /*! exports provided: unset */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3271,9 +3271,9 @@ function unset(obj, atPath) {
 /***/ }),
 
 /***/ "../../packages/osd-std/target/web/url.js":
-/*!*************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/packages/osd-std/target/web/url.js ***!
-  \*************************************************************************************/
+/*!***************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/packages/osd-std/target/web/url.js ***!
+  \***************************************************************************************/
 /*! exports provided: modifyUrl, isRelativeUrl, getUrlOrigin */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3427,9 +3427,9 @@ function getUrlOrigin(url) {
 /***/ }),
 
 /***/ "../../packages/osd-std/target/web/validate_object.js":
-/*!*************************************************************************************************!*\
-  !*** /home/ubuntu/repos/OpenSearch-Dashboards-1/packages/osd-std/target/web/validate_object.js ***!
-  \*************************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** /Users/lnse/opensearch/OpenSearch-Dashboards/packages/osd-std/target/web/validate_object.js ***!
+  \***************************************************************************************************/
 /*! exports provided: validateObject */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3496,7 +3496,7 @@ function validateObject(obj) {
 /*!*************************!*\
   !*** ./common/index.ts ***!
   \*************************/
-/*! exports provided: PLUGIN_ID, PLUGIN_NAME, PPL_SEARCH_STRATEGY, SQL_SEARCH_STRATEGY, PPL_ENDPOINT, SQL_ENDPOINT, OPENSEARCH_PANELS_API, OPENSEARCH_DATACONNECTIONS_API, JOBS_ENDPOINT_BASE, formatDate, getFields, removeKeyword */
+/*! exports provided: PLUGIN_ID, PLUGIN_NAME, PPL_SEARCH_STRATEGY, SQL_SEARCH_STRATEGY, SQL_ASYNC_SEARCH_STRATEGY, PPL_ENDPOINT, SQL_ENDPOINT, OPENSEARCH_PANELS_API, OPENSEARCH_DATACONNECTIONS_API, JOBS_ENDPOINT_BASE, formatDate, getFields, removeKeyword */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3505,6 +3505,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PLUGIN_NAME", function() { return PLUGIN_NAME; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PPL_SEARCH_STRATEGY", function() { return PPL_SEARCH_STRATEGY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SQL_SEARCH_STRATEGY", function() { return SQL_SEARCH_STRATEGY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SQL_ASYNC_SEARCH_STRATEGY", function() { return SQL_ASYNC_SEARCH_STRATEGY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PPL_ENDPOINT", function() { return PPL_ENDPOINT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SQL_ENDPOINT", function() { return SQL_ENDPOINT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OPENSEARCH_PANELS_API", function() { return OPENSEARCH_PANELS_API; });
@@ -3521,6 +3522,7 @@ const PLUGIN_ID = 'queryEnhancements';
 const PLUGIN_NAME = 'queryEnhancements';
 const PPL_SEARCH_STRATEGY = 'ppl';
 const SQL_SEARCH_STRATEGY = 'sql';
+const SQL_ASYNC_SEARCH_STRATEGY = 'sqlasync';
 const PPL_ENDPOINT = '/_plugins/_ppl';
 const SQL_ENDPOINT = '/_plugins/_sql';
 const BASE_OBSERVABILITY_URI = '/_plugins/_observability';
@@ -3753,6 +3755,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _search_ppl_search_interceptor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search/ppl_search_interceptor */ "./public/search/ppl_search_interceptor.ts");
 /* harmony import */ var _search_sql_search_interceptor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./search/sql_search_interceptor */ "./public/search/sql_search_interceptor.ts");
+/* harmony import */ var _search_sql_async_search_interceptor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./search/sql_async_search_interceptor */ "./public/search/sql_async_search_interceptor.ts");
+
 
 
 
@@ -3768,6 +3772,13 @@ class QueryEnhancementsPlugin {
       usageCollector: data.search.usageCollector
     });
     const sqlSearchInterceptor = new _search_sql_search_interceptor__WEBPACK_IMPORTED_MODULE_2__["SQLQlSearchInterceptor"]({
+      toasts: core.notifications.toasts,
+      http: core.http,
+      uiSettings: core.uiSettings,
+      startServices: core.getStartServices(),
+      usageCollector: data.search.usageCollector
+    });
+    const sqlAsyncSearchInterceptor = new _search_sql_async_search_interceptor__WEBPACK_IMPORTED_MODULE_3__["SQLAsyncQlSearchInterceptor"]({
       toasts: core.notifications.toasts,
       http: core.http,
       uiSettings: core.uiSettings,
@@ -3806,6 +3817,27 @@ class QueryEnhancementsPlugin {
             showFilterBar: false,
             queryStringInput: {
               initialValue: 'SELECT * FROM <data_source>'
+            }
+          },
+          fields: {
+            filterable: false,
+            visualizable: false
+          },
+          showDocLinks: false,
+          supportedAppNames: ['discover']
+        }
+      }
+    });
+    data.__enhance({
+      ui: {
+        query: {
+          language: 'SQL Async',
+          search: sqlAsyncSearchInterceptor,
+          searchBar: {
+            showDatePicker: false,
+            showFilterBar: false,
+            queryStringInput: {
+              initialValue: 'SHOW DATABASES IN mys3'
             }
           },
           fields: {
@@ -3983,6 +4015,112 @@ class PPLQlSearchInterceptor extends _src_plugins_data_public__WEBPACK_IMPORTED_
   }
   search(request, options) {
     return this.runSearch(request, options.abortSignal, _common__WEBPACK_IMPORTED_MODULE_6__["PPL_SEARCH_STRATEGY"]);
+  }
+}
+
+/***/ }),
+
+/***/ "./public/search/sql_async_search_interceptor.ts":
+/*!*******************************************************!*\
+  !*** ./public/search/sql_async_search_interceptor.ts ***!
+  \*******************************************************/
+/*! exports provided: SQLAsyncQlSearchInterceptor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SQLAsyncQlSearchInterceptor", function() { return SQLAsyncQlSearchInterceptor; });
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "rxjs");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(rxjs__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _osd_std__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @osd/std */ "../../packages/osd-std/target/web/index.js");
+/* harmony import */ var _src_plugins_data_public__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../src/plugins/data/public */ "plugin/data/public");
+/* harmony import */ var _src_plugins_data_public__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_src_plugins_data_public__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../common */ "./common/index.ts");
+/* harmony import */ var _osd_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @osd/i18n */ "@osd/i18n");
+/* harmony import */ var _osd_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_osd_i18n__WEBPACK_IMPORTED_MODULE_5__);
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+
+
+
+
+
+class SQLAsyncQlSearchInterceptor extends _src_plugins_data_public__WEBPACK_IMPORTED_MODULE_3__["SearchInterceptor"] {
+  constructor(deps) {
+    super(deps);
+    _defineProperty(this, "queryService", void 0);
+    _defineProperty(this, "aggsService", void 0);
+    deps.startServices.then(([coreStart, depsStart]) => {
+      this.queryService = depsStart.data.query;
+      this.aggsService = depsStart.data.search.aggs;
+    });
+  }
+  runSearch(request, signal, strategy) {
+    var _searchRequest$params;
+    const {
+      id,
+      ...searchRequest
+    } = request;
+    const path = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["trimEnd"])('/api/sqlasyncql/jobs');
+    console.log('searchRequest in search interceptor:', searchRequest);
+    const fetchDataFrame = (queryString, df = null, session = undefined) => {
+      console.log('queryString in search interceptor:', queryString);
+      console.log('session in search interceptor:', session);
+      const body = Object(_osd_std__WEBPACK_IMPORTED_MODULE_2__["stringify"])({
+        query: {
+          qs: queryString,
+          format: 'jdbc'
+        },
+        df,
+        sessionId: session
+      });
+      console.log('body in search interceptor:', body);
+      return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["from"])(this.deps.http.fetch({
+        method: 'POST',
+        path,
+        body,
+        signal
+      }));
+    };
+    const fetchJobStatusDataFrame = queryId => {
+      console.log('queryId in search interceptor:', queryId);
+      return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["from"])(this.deps.http.fetch({
+        method: 'GET',
+        path: `${path}/${queryId}`
+      }));
+    };
+    let dataFrame;
+    if ((_searchRequest$params = searchRequest.params.body.query.queries[0]) !== null && _searchRequest$params !== void 0 && _searchRequest$params.queryId) {
+      var _searchRequest$params2;
+      console.log('searchRequest contains queryId IN SEARCH INTERCEPTOR');
+      dataFrame = fetchJobStatusDataFrame((_searchRequest$params2 = searchRequest.params.body.query.queries[0]) === null || _searchRequest$params2 === void 0 ? void 0 : _searchRequest$params2.queryId);
+    } else {
+      dataFrame = fetchDataFrame(searchRequest.params.body.query.queries[0].query, searchRequest.params.body.df, searchRequest.params.body.query.queries[0].sessionId);
+    }
+
+    // subscribe to dataFrame to see if an error is returned, display a toast message if so
+    dataFrame.subscribe(df => {
+      if (!df.body.error) {
+        console.log('dataFrame in search interceptor after fetchDataFrame():', df);
+      }
+      if (!df.body.error) return;
+      const jsError = new Error(df.body.error.response);
+      this.deps.toasts.addError(jsError, {
+        title: _osd_i18n__WEBPACK_IMPORTED_MODULE_5__["i18n"].translate('dqlPlugin.sqlQueryError', {
+          defaultMessage: 'Could not complete the SQL async query'
+        }),
+        toastMessage: df.body.error.msg
+      });
+    });
+    return dataFrame;
+  }
+  search(request, options) {
+    console.log('running search in search interceptor');
+    return this.runSearch(request, options.abortSignal, _common__WEBPACK_IMPORTED_MODULE_4__["SQL_SEARCH_STRATEGY"]);
   }
 }
 

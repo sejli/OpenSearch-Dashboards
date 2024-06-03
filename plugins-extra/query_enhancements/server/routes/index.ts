@@ -91,4 +91,79 @@ export function defineRoutes(
       }
     }
   );
+
+  // sql async jobs
+  router.post(
+    {
+      path: `/api/sqlasyncql/jobs`,
+      validate: {
+        body: schema.object({
+          query: schema.object({
+            qs: schema.string(),
+            format: schema.string(),
+          }),
+          df: schema.any(),
+          sessionId: schema.maybe(schema.string()),
+        }),
+      },
+    },
+    async (context, req, res): Promise<any> => {
+      try {
+        console.log('context in index routes:', context);
+        console.log('req in index routes:', req);
+        console.log('req.body in index routes:', req.body);
+        const queryRes: IDataFrameResponse = await searchStrategies.sqlasync.search(
+          context,
+          req as any,
+          {}
+        );
+        const result: any = {
+          body: {
+            ...queryRes,
+          },
+        };
+        return res.ok(result);
+      } catch (err) {
+        logger.error(err);
+        return res.custom({
+          statusCode: 500,
+          body: err,
+        });
+      }
+    }
+  );
+
+  // sql async get job status
+  router.get(
+    {
+      path: `/api/sqlasyncql/jobs/{queryId}`,
+      validate: {
+        params: schema.object({
+          queryId: schema.string(),
+        }),
+      },
+    },
+    async (context, req, res): Promise<any> => {
+      try {
+        console.log('getting job status:', req.params.queryId);
+        const queryRes: IDataFrameResponse = await searchStrategies.sqlasync.search(
+          context,
+          req as any,
+          {}
+        );
+        const result: any = {
+          body: {
+            ...queryRes,
+          },
+        };
+        return res.ok(result);
+      } catch (err) {
+        logger.error(err);
+        return res.custom({
+          statusCode: 500,
+          body: err,
+        });
+      }
+    }
+  );
 }
