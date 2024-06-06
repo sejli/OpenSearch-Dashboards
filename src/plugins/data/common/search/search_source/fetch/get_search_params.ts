@@ -77,10 +77,12 @@ export async function getExternalSearchParamsFromRequest(
     getDataFrame() ?? // get data frame cache (name: mys3) - if exists - will get session id from session cache if exists for datasource (name: mys3)
     getDataFrameBySource(indexTitle) ??
     (await setDataFrame(createDataFrame({ name: indexTitle, fields: [] })));
+  const dataSource = searchRequest.dataSource;
 
   console.log('MQL: DATAFRAME:', dataFrame);
   return {
     index: indexTitle,
+    dataSource,
     body: {
       ...searchRequest.body,
       ...(dataFrame ? { df: dataFrame } : {}),
