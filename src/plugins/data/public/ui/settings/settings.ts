@@ -3,7 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { BehaviorSubject } from 'rxjs';
 import { IStorageWrapper } from '../../../../opensearch_dashboards_utils/public';
+import { ConfigSchema } from '../../../config';
 import { setOverrides as setFieldOverrides } from '../../../common';
 import { QueryEnhancement } from '../types';
 
@@ -20,10 +22,59 @@ export interface DataSettings {
 }
 
 export class Settings {
+  private enabledQueryEnhancementsUpdated$ = new BehaviorSubject<boolean>(false);
+  private enhancedAppNames: string[] = [];
+
   constructor(
+    private readonly config: ConfigSchema['enhancements'],
     private readonly storage: IStorageWrapper,
     private readonly queryEnhancements: Map<string, QueryEnhancement>
-  ) {}
+  ) {
+    this.enabledQueryEnhancementsUpdated$.next(this.config.enabled);
+    this.enhancedAppNames = this.config.enabled ? this.config.supportedAppNames : [];
+  }
+
+  supportsEnhancementsEnabled(appName: string) {
+    return this.enhancedAppNames.includes(appName);
+  }
+
+  getEnabledQueryEnhancementsUpdated$ = () => {
+    return this.enabledQueryEnhancementsUpdated$.asObservable();
+  };
+
+  getUserQueryEnhancementsEnabled() {
+    return (
+      this.storage.get('opensearchDashboards.userQueryEnhancementsEnabled') || this.config.enabled
+    );
+  }
+
+  setUserQueryEnhancementsEnabled(enabled: boolean) {
+    if (!this.config.enabled) return;
+    this.storage.set('opensearchDashboards.userQueryEnhancementsEnabled', enabled);
+    this.enabledQueryEnhancementsUpdated$.next(enabled);
+    return true;
+  }
+
+  getAllQueryEnhancements() {
+    return this.queryEnhancements;
+  }
+
+  getQueryEnhancements(language: string) {
+    return this.queryEnhancements.get(language);
+  }
+
+  getUserQueryLanguageBlocklist() {
+    return this.storage.get('opensearchDashboards.userQueryLanguageBlocklist') || [];
+  }
+
+  setUserQueryLanguageBlocklist(languages: string[]) {
+    if (!this.config.enabled) return;
+    this.storage.set(
+      'opensearchDashboards.userQueryLanguageBlocklist',
+      languages.map((language) => language.toLowerCase())
+    );
+    return true;
+  }
 
   getUserQueryLanguage() {
     return this.storage.get('opensearchDashboards.userQueryLanguage') || 'kuery';
@@ -84,10 +135,11 @@ export class Settings {
 }
 
 interface Deps {
+  config: ConfigSchema['enhancements'];
   storage: IStorageWrapper;
   queryEnhancements: Map<string, QueryEnhancement>;
 }
 
-export function createSettings({ storage, queryEnhancements }: Deps) {
-  return new Settings(storage, queryEnhancements);
+export function createSettings({ config, storage, queryEnhancements }: Deps) {
+  return new Settings(config, storage, queryEnhancements);
 }
