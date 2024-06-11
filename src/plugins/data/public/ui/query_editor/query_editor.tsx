@@ -282,7 +282,7 @@ export default class QueryEditorUI extends Component<Props, State> {
             <div ref={this.props.queryEditorHeaderRef} className={queryEditorHeaderClassName} />
             <CodeEditor
               height={70}
-              languageId="xjson"
+              languageId="opensearchql"
               value={this.getQueryString()}
               onChange={this.onInputChange}
               options={{
