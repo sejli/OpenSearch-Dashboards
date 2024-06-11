@@ -80,7 +80,6 @@ export interface QueryBarTopRowProps {
   showAutoRefreshOnly?: boolean;
   onRefreshChange?: (options: { isPaused: boolean; refreshInterval: number }) => void;
   customSubmitButton?: any;
-  filterBar?: any;
   isDirty: boolean;
   timeHistory?: TimeHistoryContract;
   indicateNoData?: boolean;
@@ -391,7 +390,6 @@ export default function QueryBarTopRow(props: QueryBarTopRowProps) {
         {renderSharingMetaFields()}
         <EuiFlexItem grow={false}>{renderUpdateButton()}</EuiFlexItem>
       </EuiFlexGroup>
-      {props.filterBar}
     </>
   );
 }

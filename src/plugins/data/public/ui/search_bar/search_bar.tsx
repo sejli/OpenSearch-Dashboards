@@ -480,7 +480,6 @@ class SearchBarUI extends Component<SearchBarProps, State> {
           customSubmitButton={
             this.props.customSubmitButton ? this.props.customSubmitButton : undefined
           }
-          filterBar={filterBar}
           dataTestSubj={this.props.dataTestSubj}
           indicateNoData={this.props.indicateNoData}
         />
@@ -527,6 +526,7 @@ class SearchBarUI extends Component<SearchBarProps, State> {
       <div className={className} data-test-subj={className}>
         {queryBar}
         {queryEditor}
+        {!isEnhancementsEnabledOverride && filterBar}
 
         {this.state.showSaveQueryModal ? (
           <SaveQueryForm
