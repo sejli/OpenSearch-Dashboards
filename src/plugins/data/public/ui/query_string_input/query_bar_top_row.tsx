@@ -80,6 +80,7 @@ export interface QueryBarTopRowProps {
   showAutoRefreshOnly?: boolean;
   onRefreshChange?: (options: { isPaused: boolean; refreshInterval: number }) => void;
   customSubmitButton?: any;
+  filterBar?: any;
   isDirty: boolean;
   timeHistory?: TimeHistoryContract;
   indicateNoData?: boolean;
@@ -379,16 +380,19 @@ export default function QueryBarTopRow(props: QueryBarTopRowProps) {
   });
 
   return (
-    <EuiFlexGroup
-      className={classes}
-      responsive={!!props.showDatePicker}
-      gutterSize="s"
-      justifyContent="flexEnd"
-    >
-      {renderQueryInput()}
-      {renderSharingMetaFields()}
-      <EuiFlexItem grow={false}>{renderUpdateButton()}</EuiFlexItem>
-    </EuiFlexGroup>
+    <>
+      <EuiFlexGroup
+        className={classes}
+        responsive={!!props.showDatePicker}
+        gutterSize="s"
+        justifyContent="flexEnd"
+      >
+        {renderQueryInput()}
+        {renderSharingMetaFields()}
+        <EuiFlexItem grow={false}>{renderUpdateButton()}</EuiFlexItem>
+      </EuiFlexGroup>
+      {props.filterBar}
+    </>
   );
 }
 

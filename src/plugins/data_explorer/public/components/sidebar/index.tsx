@@ -47,6 +47,7 @@ export const Sidebar: FC = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    if (!isEnhancementsEnabled) return;
     const subscriptions = ui.container$.subscribe((container) => {
       if (container === null) return;
       if (containerRef.current) {
@@ -57,7 +58,7 @@ export const Sidebar: FC = ({ children }) => {
     return () => {
       subscriptions.unsubscribe();
     };
-  }, [ui.container$, containerRef, setContainerRef, ui.containerRef]);
+  }, [ui.container$, containerRef, setContainerRef, ui.containerRef, isEnhancementsEnabled]);
 
   useEffect(() => {
     let isMounted = true;

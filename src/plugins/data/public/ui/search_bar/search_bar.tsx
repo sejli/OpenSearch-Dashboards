@@ -425,38 +425,6 @@ class SearchBarUI extends Component<SearchBarProps, State> {
       />
     );
 
-    let queryBar;
-    if (this.shouldRenderQueryBar(isEnhancementsEnabledOverride)) {
-      // TODO: MQL make this default query bar top row but this.props.queryEnhancements.get(language) can pass a component
-      queryBar = (
-        <QueryBarTopRow
-          timeHistory={this.props.timeHistory}
-          query={this.state.query}
-          screenTitle={this.props.screenTitle}
-          onSubmit={this.onQueryBarSubmit}
-          indexPatterns={this.props.indexPatterns}
-          isLoading={this.props.isLoading}
-          prepend={this.props.showFilterBar ? savedQueryManagement : undefined}
-          showDatePicker={this.props.showDatePicker}
-          dateRangeFrom={this.state.dateRangeFrom}
-          dateRangeTo={this.state.dateRangeTo}
-          isRefreshPaused={this.props.isRefreshPaused}
-          refreshInterval={this.props.refreshInterval}
-          showAutoRefreshOnly={this.props.showAutoRefreshOnly}
-          showQueryInput={this.props.showQueryInput}
-          onRefresh={this.props.onRefresh}
-          onRefreshChange={this.props.onRefreshChange}
-          onChange={this.onQueryBarChange}
-          isDirty={this.isDirty()}
-          customSubmitButton={
-            this.props.customSubmitButton ? this.props.customSubmitButton : undefined
-          }
-          dataTestSubj={this.props.dataTestSubj}
-          indicateNoData={this.props.indicateNoData}
-        />
-      );
-    }
-
     let filterBar;
     if (this.shouldRenderFilterBar()) {
       const filterGroupClasses = classNames('globalFilterGroup__wrapper', {
@@ -487,9 +455,40 @@ class SearchBarUI extends Component<SearchBarProps, State> {
       );
     }
 
+    let queryBar;
+    if (this.shouldRenderQueryBar(isEnhancementsEnabledOverride)) {
+      queryBar = (
+        <QueryBarTopRow
+          timeHistory={this.props.timeHistory}
+          query={this.state.query}
+          screenTitle={this.props.screenTitle}
+          onSubmit={this.onQueryBarSubmit}
+          indexPatterns={this.props.indexPatterns}
+          isLoading={this.props.isLoading}
+          prepend={this.props.showFilterBar ? savedQueryManagement : undefined}
+          showDatePicker={this.props.showDatePicker}
+          dateRangeFrom={this.state.dateRangeFrom}
+          dateRangeTo={this.state.dateRangeTo}
+          isRefreshPaused={this.props.isRefreshPaused}
+          refreshInterval={this.props.refreshInterval}
+          showAutoRefreshOnly={this.props.showAutoRefreshOnly}
+          showQueryInput={this.props.showQueryInput}
+          onRefresh={this.props.onRefresh}
+          onRefreshChange={this.props.onRefreshChange}
+          onChange={this.onQueryBarChange}
+          isDirty={this.isDirty()}
+          customSubmitButton={
+            this.props.customSubmitButton ? this.props.customSubmitButton : undefined
+          }
+          filterBar={filterBar}
+          dataTestSubj={this.props.dataTestSubj}
+          indicateNoData={this.props.indicateNoData}
+        />
+      );
+    }
+
     let queryEditor;
     if (this.shouldRenderQueryEditor(isEnhancementsEnabledOverride)) {
-      // TODO: MQL make this default query bar top row but this.props.queryEnhancements.get(language) can pass a component
       queryEditor = (
         <QueryEditorTopRow
           timeHistory={this.props.timeHistory}
@@ -528,7 +527,6 @@ class SearchBarUI extends Component<SearchBarProps, State> {
       <div className={className} data-test-subj={className}>
         {queryBar}
         {queryEditor}
-        {!isEnhancementsEnabledOverride && filterBar}
 
         {this.state.showSaveQueryModal ? (
           <SaveQueryForm
