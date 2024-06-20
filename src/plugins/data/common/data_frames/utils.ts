@@ -46,6 +46,27 @@ export const getRawQueryString = (
 };
 
 /**
+ * Returns the raw data source from the raw query string.
+ *
+ * @param string - query string
+ * @returns raw data source if found
+ */
+export const getRawDataSource = (rawQueryString: string): string | undefined => {
+  const rawDataSource = rawQueryString.match(/<ds>(.*?)<\/ds>/);
+  return rawDataSource ? rawDataSource[1] : undefined;
+};
+
+/**
+ * Returns the query string without datasource
+ *
+ * @param string - query string
+ * @returns raw data source if found
+ */
+export const removeRawDataSourceFromQs = (rawQueryString: string): string => {
+  return rawQueryString.replace(/<ds>(.*?)<\/ds>/g, '');
+};
+
+/**
  * Returns the raw aggregations from the search request.
  *
  * @param searchRequest - search request object
