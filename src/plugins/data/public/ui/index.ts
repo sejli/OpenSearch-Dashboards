@@ -41,3 +41,4 @@ export { FilterLabel } from './filter_bar';
 export { QueryStringInput, QueryStringInputProps } from './query_string_input';
 export { SearchBar, SearchBarProps, StatefulSearchBarProps } from './search_bar';
 export { SuggestionsComponent } from './typeahead';
+export { DataSetNavigator, IndexPatternSelectable } from './dataset_navigator';
