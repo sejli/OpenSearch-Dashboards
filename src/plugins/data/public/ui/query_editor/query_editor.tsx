@@ -6,7 +6,7 @@
 import { EuiFlexGroup, EuiFlexItem, htmlIdGenerator, PopoverAnchorPosition } from '@elastic/eui';
 import classNames from 'classnames';
 import { isEqual } from 'lodash';
-import React, { Component, createRef, RefObject, useCallback } from 'react';
+import React, { Component, createRef, RefObject } from 'react';
 import { DataSetNavigator, Settings } from '..';
 import { DataSource, IDataPluginServices, IIndexPattern, Query, TimeRange } from '../..';
 import {
