@@ -33,7 +33,7 @@ import {
   fetchDataFrame,
 } from '../../common';
 import { QueryEnhancementsPluginStartDependencies } from '../types';
-import { ConnectionsService } from '../data_source_connection';
+import { ConnectionsService } from '../services';
 
 export class PPLSearchInterceptor extends SearchInterceptor {
   protected queryService!: DataPublicPluginStart['query'];

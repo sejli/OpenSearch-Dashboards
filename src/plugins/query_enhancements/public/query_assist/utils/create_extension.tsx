@@ -13,7 +13,7 @@ import {
 } from '../../../../data/public';
 import { API } from '../../../common';
 import { ConfigSchema } from '../../../common/config';
-import { ConnectionsService } from '../../data_source_connection';
+import { ConnectionsService } from '../../services';
 import { QueryAssistBar, QueryAssistBanner } from '../components';
 
 /**

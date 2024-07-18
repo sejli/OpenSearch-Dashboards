@@ -12,7 +12,7 @@ import {
 } from '../../../../data/public';
 import { useOpenSearchDashboards } from '../../../../opensearch_dashboards_react/public';
 import { QueryAssistParameters } from '../../../common/query_assist';
-import { ConnectionsService } from '../../data_source_connection';
+import { ConnectionsService } from '../../services';
 import { getStorage } from '../../services';
 import { useGenerateQuery } from '../hooks';
 import { getPersistedLog, ProhibitedQueryError } from '../utils';
