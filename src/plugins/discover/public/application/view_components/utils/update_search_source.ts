@@ -31,17 +31,28 @@ export const updateSearchSource = async ({
 }: Props) => {
   const { uiSettings, data } = services;
   let dataSet = indexPattern;
-  const dataFrame = searchSource?.getDataFrame();
+  const tempDs = data.indexPatterns.getByTitle(data.ui.Settings.getSelectedDataSet()?.name, true);
   if (
     searchSource &&
-    dataFrame &&
-    dataFrame.name &&
-    dataFrame.name !== '' &&
-    dataSet.title !== dataFrame.name
+    tempDs &&
+    tempDs.title &&
+    tempDs.title !== '' &&
+    dataSet.title !== tempDs.title
   ) {
-    dataSet = data.indexPatterns.getByTitle(dataFrame.name, true) ?? dataSet;
-    searchSource.setField('index', dataSet);
+    dataSet = tempDs;
+    searchSource.setField('index', tempDs);
   }
+  // const dataFrame = searchSource?.getDataFrame();
+  // if (
+  //   searchSource &&
+  //   dataFrame &&
+  //   dataFrame.name &&
+  //   dataFrame.name !== '' &&
+  //   dataSet.title !== dataFrame.name
+  // ) {
+  //   dataSet = data.indexPatterns.getByTitle(dataFrame.name, true) ?? dataSet;
+  //   searchSource.setField('index', tempDs);
+  // }
 
   const sortForSearchSource = getSortForSearchSource(
     sort,

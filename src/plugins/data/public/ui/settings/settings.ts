@@ -28,6 +28,7 @@ export class Settings {
   private enabledQueryEnhancementsUpdated$ = new BehaviorSubject<boolean>(this.isEnabled);
   private enhancedAppNames: string[] = [];
   private selectedDataSet$ = new BehaviorSubject<any>(null);
+  private selectedDataSet: any = null;
 
   constructor(
     private readonly config: ConfigSchema['enhancements'],
@@ -39,7 +40,8 @@ export class Settings {
     this.isEnabled = true;
     this.setUserQueryEnhancementsEnabled(this.isEnabled);
     this.enhancedAppNames = this.isEnabled ? this.config.supportedAppNames : [];
-    this.setSelectedDataSet(this.getSelectedDataSet());
+    this.selectedDataSet = null;
+    this.setSelectedDataSet(this.selectedDataSet);
   }
 
   /**
@@ -58,7 +60,7 @@ export class Settings {
   };
 
   getSelectedDataSet = () => {
-    return this.storage.get('opensearchDashboards.userQueryDataSet');
+    return this.selectedDataSet;
   };
 
   supportsEnhancementsEnabled(appName: string) {
