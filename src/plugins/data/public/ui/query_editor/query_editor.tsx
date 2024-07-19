@@ -312,13 +312,6 @@ export default class QueryEditorUI extends Component<Props, State> {
           <EuiFlexItem grow={false}>
             <EuiFlexGroup gutterSize="xs" alignItems="center" className={`${className}__wrapper`}>
               <EuiFlexItem grow={false}>{this.props.prepend}</EuiFlexItem>
-              <EuiFlexItem grow={false} className={`${className}__dataSetNavigatorWrapper`}>
-                <DataSetNavigator
-                  savedObjectsClient={this.services.savedObjects.client}
-                  indexPatterns={this.props.indexPatterns}
-                  onSubmit={this.onSelectDataSet}
-                />
-              </EuiFlexItem>
               <EuiFlexItem grow={false} className={`${className}__languageWrapper`}>
                 <QueryLanguageSelector
                   language={this.props.query.language}
@@ -327,6 +320,11 @@ export default class QueryEditorUI extends Component<Props, State> {
                   appName={this.services.appName}
                 />
               </EuiFlexItem>
+              {this.state.isDataSetsVisible && (
+                <EuiFlexItem grow={false} className={`${className}__dataSetWrapper`}>
+                  <div ref={this.props.containerRef} />
+                </EuiFlexItem>
+              )}
             </EuiFlexGroup>
           </EuiFlexItem>
           <EuiFlexItem onClick={this.onClickInput} grow={true}>
