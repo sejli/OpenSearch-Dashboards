@@ -155,15 +155,6 @@ export const Sidebar: FC = ({ children }) => {
         borderRadius="none"
         color="transparent"
       >
-        {isEnhancementsEnabled && (
-          <EuiPortal
-            portalRef={(node) => {
-              containerRef.current = node;
-            }}
-          >
-            {dataSourceSelector}
-          </EuiPortal>
-        )}
         {!isEnhancementsEnabled && (
           <EuiSplitPanel.Inner
             paddingSize="s"

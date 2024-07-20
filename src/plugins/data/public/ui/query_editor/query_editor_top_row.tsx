@@ -206,11 +206,10 @@ export default function QueryEditorTopRow(props: QueryEditorTopRowProps) {
     )
       return '';
 
-    const defaultDataSource = indexPatterns[0];
-    const dataSource =
-      typeof defaultDataSource === 'string' ? defaultDataSource : defaultDataSource.title;
+    const defaultDataSet = settings?.getSelectedDataSet()?.name ?? indexPatterns[0];
+    const dataSet = typeof defaultDataSet === 'string' ? defaultDataSet : defaultDataSet.title;
 
-    return input.replace('<data_source>', dataSource);
+    return input.replace('<data_source>', dataSet);
   }
 
   function renderQueryEditor() {
