@@ -3,4 +3,4 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-export { ConnectionsBar } from './connections_bar';
+export { UseCaseFooter } from './use_case_footer';
