@@ -270,6 +270,7 @@ export default function QueryEditorTopRow(props: QueryEditorTopRowProps) {
         className="euiSuperUpdateButton"
         iconType="play"
         fill
+        size="s"
       >
         Run
       </EuiButton>
@@ -337,6 +338,7 @@ export default function QueryEditorTopRow(props: QueryEditorTopRowProps) {
           dateFormat={uiSettings!.get('dateFormat')}
           isAutoRefreshOnly={props.showAutoRefreshOnly}
           className="osdQueryEditor__datePicker"
+          compressed={true}
         />
       </EuiFlexItem>
     );

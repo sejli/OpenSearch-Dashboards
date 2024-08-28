@@ -5,7 +5,7 @@
 
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { BehaviorSubject, Subject, merge } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { i18n } from '@osd/i18n';
 import { useEffect } from 'react';
 import { cloneDeep } from 'lodash';
@@ -73,7 +73,9 @@ export const useSearch = (services: DiscoverViewServices) => {
   const { pathname } = useLocation();
   const initalSearchComplete = useRef(false);
   const [savedSearch, setSavedSearch] = useState<SavedSearch | undefined>(undefined);
-  const { savedSearch: savedSearchId, sort, interval } = useSelector((state) => state.discover);
+  const { savedSearch: savedSearchId, sort, interval, columns } = useSelector(
+    (state) => state.discover
+  );
   const indexPattern = useIndexPattern(services);
   const {
     data,
@@ -97,6 +99,8 @@ export const useSearch = (services: DiscoverViewServices) => {
   const inspectorAdapters = {
     requests: new RequestAdapter(),
   };
+
+  const [queryChanged, setQueryChanged] = useState(true);
 
   const shouldSearchOnPageLoad = useCallback(() => {
     // A saved search is created on every page load, so we check the ID to see if we're loading a
@@ -253,16 +257,29 @@ export const useSearch = (services: DiscoverViewServices) => {
       timefilter.getAutoRefreshFetch$(),
       data.query.queryString.getUpdates$(),
       data.query.dataSetManager.getUpdates$()
-    ).pipe(debounceTime(100));
+    ).pipe(debounceTime(100), distinctUntilChanged());
 
     const subscription = fetch$.subscribe(() => {
       (async () => {
-        try {
-          await fetch();
-        } catch (error) {
-          core.fatalErrors.add(error as Error);
+        if (queryChanged) {
+          try {
+            await fetch();
+            setQueryChanged(false);
+          } catch (error) {
+            core.fatalErrors.add(error as Error);
+          }
         }
       })();
+    });
+
+    // Reset queryChanged when relevant parts of the state change
+    const queryChangeSubscription = merge(
+      filterManager.getUpdates$(),
+      timefilter.getTimeUpdate$(),
+      data.query.queryString.getUpdates$(),
+      data.query.dataSetManager.getUpdates$()
+    ).subscribe(() => {
+      setQueryChanged(true);
     });
 
     // kick off initial refetch on page load
@@ -272,6 +289,7 @@ export const useSearch = (services: DiscoverViewServices) => {
 
     return () => {
       subscription.unsubscribe();
+      queryChangeSubscription.unsubscribe();
     };
   }, [
     data$,
@@ -283,6 +301,7 @@ export const useSearch = (services: DiscoverViewServices) => {
     core.fatalErrors,
     shouldSearchOnPageLoad,
     data.query.dataSetManager,
+    queryChanged,
   ]);
 
   // Get savedSearch if it exists
