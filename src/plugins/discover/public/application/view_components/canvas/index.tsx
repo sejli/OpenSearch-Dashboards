@@ -3,15 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { i18n } from '@osd/i18n';
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-import {
-  EuiButtonIcon,
-  EuiContextMenu,
-  EuiPanel,
-  EuiPopover,
-  EuiCompressedSwitch,
-} from '@elastic/eui';
+import { EuiPanel } from '@elastic/eui';
 import { TopNav } from './top_nav';
 import { ViewProps } from '../../../../../data_explorer/public';
 import { DiscoverTable } from './discover_table';
@@ -33,14 +26,18 @@ import {
 import { OpenSearchSearchHit } from '../../../application/doc_views/doc_views_types';
 import { buildColumns } from '../../utils/columns';
 import './discover_canvas.scss';
-import { getNewDiscoverSetting, setNewDiscoverSetting } from '../../components/utils/local_storage';
+import { HeaderVariant } from '../../../../../../core/public';
 
 // eslint-disable-next-line import/no-default-export
 export default function DiscoverCanvas({ setHeaderActionMenu, history, optionalRef }: ViewProps) {
   const panelRef = useRef<HTMLDivElement>(null);
   const { data$, refetch$, indexPattern } = useDiscoverContext();
   const {
-    services: { uiSettings, storage, capabilities },
+    services: {
+      uiSettings,
+      capabilities,
+      chrome: { setHeaderVariant },
+    },
   } = useOpenSearchDashboards<DiscoverViewServices>();
   const { columns } = useSelector((state) => {
     const stateColumns = state.discover.columns;
@@ -110,6 +107,13 @@ export default function DiscoverCanvas({ setHeaderActionMenu, history, optionalR
     }
   }, [dispatch, filteredColumns, indexPattern]);
 
+  useEffect(() => {
+    setHeaderVariant?.(HeaderVariant.APPLICATION);
+    return () => {
+      setHeaderVariant?.();
+    };
+  }, [setHeaderVariant]);
+
   const timeField = indexPattern?.timeFieldName ? indexPattern.timeFieldName : undefined;
   const scrollToTop = () => {
     if (panelRef.current) {
@@ -138,6 +142,9 @@ export default function DiscoverCanvas({ setHeaderActionMenu, history, optionalR
       />
 
       {fetchState.status === ResultStatus.NO_RESULTS && (
+        <DiscoverNoResults timeFieldName={timeField} queryLanguage={''} />
+      )}
+      {fetchState.status === ResultStatus.ERROR && (
         <DiscoverNoResults timeFieldName={timeField} queryLanguage={''} />
       )}
       {fetchState.status === ResultStatus.UNINITIALIZED && (

@@ -32,8 +32,8 @@ import { mount } from 'enzyme';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { BehaviorSubject } from 'rxjs';
-import { HeaderBreadcrumbs } from './header_breadcrumbs';
 import { ChromeBreadcrumb } from '../../chrome_service';
+import { HeaderBreadcrumbs } from './header_breadcrumbs';
 
 describe('HeaderBreadcrumbs', () => {
   it('renders updates to the breadcrumbs$ observable', () => {
@@ -50,6 +50,29 @@ describe('HeaderBreadcrumbs', () => {
     act(() => breadcrumbs$.next([{ text: 'First' }, { text: 'Second' }]));
     wrapper.update();
     expect(wrapper.find('.euiBreadcrumb')).toMatchSnapshot();
+
+    act(() => breadcrumbs$.next([]));
+    wrapper.update();
+    expect(wrapper.find('.euiBreadcrumb')).toMatchSnapshot();
+  });
+
+  it('renders updates to the breadcrumbs$ observable with updated header', () => {
+    const breadcrumbs$ = new BehaviorSubject([{ text: 'First' }]);
+    const wrapper = mount(
+      <HeaderBreadcrumbs
+        appTitle$={new BehaviorSubject('')}
+        breadcrumbs$={breadcrumbs$}
+        breadcrumbsEnricher$={new BehaviorSubject(undefined)}
+        useUpdatedHeader={true}
+      />
+    );
+    expect(wrapper.find('.euiBreadcrumb')).toMatchSnapshot();
+    expect(wrapper.find('[data-test-subj="breadcrumb first"]').exists()).toBeFalsy();
+
+    act(() => breadcrumbs$.next([{ text: 'First' }, { text: 'Second' }]));
+    wrapper.update();
+    expect(wrapper.find('.euiBreadcrumb')).toMatchSnapshot();
+    expect(wrapper.find('[data-test-subj="breadcrumb first"]').exists()).toBeTruthy();
 
     act(() => breadcrumbs$.next([]));
     wrapper.update();
@@ -83,5 +106,45 @@ describe('HeaderBreadcrumbs', () => {
     act(() => breadcrumbs$.next([]));
     wrapper.update();
     expect(wrapper.find('.euiBreadcrumbWrapper')).toHaveLength(2);
+  });
+
+  it('remove heading home when workspace is enabled', () => {
+    const breadcrumbs$ = new BehaviorSubject([{ text: 'First' }]);
+    const breadcrumbsEnricher$ = new BehaviorSubject((crumbs: ChromeBreadcrumb[]) => [
+      { text: 'Home', home: true },
+      { text: 'Analytics' },
+      ...crumbs,
+    ]);
+    const wrapper = mount(
+      <HeaderBreadcrumbs
+        appTitle$={new BehaviorSubject('')}
+        breadcrumbs$={breadcrumbs$}
+        breadcrumbsEnricher$={breadcrumbsEnricher$}
+        dropHomeFromBreadcrumb={true}
+      />
+    );
+    let breadcrumbs = wrapper.find('.euiBreadcrumbWrapper');
+    expect(breadcrumbs).toHaveLength(2);
+    expect(breadcrumbs.at(0).text()).toBe('Analytics');
+    expect(breadcrumbs.at(1).text()).toBe('First');
+
+    // if no home property, we don't drop by text
+    act(() => {
+      breadcrumbsEnricher$.next((items) => items);
+      breadcrumbs$.next([{ text: 'Home' }, { text: 'Second' }]);
+    });
+    wrapper.update();
+    breadcrumbs = wrapper.find('.euiBreadcrumbWrapper');
+    expect(breadcrumbs).toHaveLength(2);
+    expect(breadcrumbs.at(0).text()).toBe('Home');
+    expect(breadcrumbs.at(1).text()).toBe('Second');
+
+    act(() => {
+      breadcrumbsEnricher$.next((items) => []);
+      breadcrumbs$.next([{ text: 'Home' }, { text: 'Second' }]);
+    });
+    wrapper.update();
+    breadcrumbs = wrapper.find('.euiBreadcrumbWrapper');
+    expect(breadcrumbs).toHaveLength(0);
   });
 });

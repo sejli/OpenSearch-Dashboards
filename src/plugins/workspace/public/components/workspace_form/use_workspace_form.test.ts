@@ -8,10 +8,10 @@ import { renderHook, act } from '@testing-library/react-hooks';
 import { applicationServiceMock } from '../../../../../core/public/mocks';
 import { WorkspacePermissionMode } from '../../../common/constants';
 import { WorkspaceOperationType, WorkspacePermissionItemType } from './constants';
-import { WorkspaceFormData, WorkspaceFormErrorCode } from './types';
+import { WorkspaceFormSubmitData, WorkspaceFormErrorCode } from './types';
 import { useWorkspaceForm } from './use_workspace_form';
 
-const setup = (defaultValues?: WorkspaceFormData, permissionEnabled = false) => {
+const setup = (defaultValues?: WorkspaceFormSubmitData, permissionEnabled = false) => {
   const onSubmitMock = jest.fn();
   const renderResult = renderHook(useWorkspaceForm, {
     initialProps: {
@@ -123,7 +123,7 @@ describe('useWorkspaceForm', () => {
     expect(onSubmitMock).toHaveBeenCalledWith(
       expect.objectContaining({
         name: 'test-workspace-name',
-        features: ['use-case-observability', 'workspace_detail'],
+        features: ['use-case-observability'],
       })
     );
   });
@@ -139,5 +139,24 @@ describe('useWorkspaceForm', () => {
       renderResult.result.current.handleUseCaseChange('search');
     });
     expect(renderResult.result.current.formData.useCase).toBe('search');
+  });
+
+  it('should reset workspace form', () => {
+    const { renderResult } = setup({
+      id: 'test',
+      name: 'current-workspace-name',
+      features: ['use-case-observability'],
+    });
+    expect(renderResult.result.current.formData.name).toBe('current-workspace-name');
+
+    act(() => {
+      renderResult.result.current.setName('update-workspace-name');
+    });
+    expect(renderResult.result.current.formData.name).toBe('update-workspace-name');
+
+    act(() => {
+      renderResult.result.current.handleResetForm();
+    });
+    expect(renderResult.result.current.formData.name).toBe('current-workspace-name');
   });
 });

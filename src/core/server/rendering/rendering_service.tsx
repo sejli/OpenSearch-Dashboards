@@ -33,6 +33,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { first, take } from 'rxjs/operators';
 import { i18n } from '@osd/i18n';
 import { Agent as HttpsAgent } from 'https';
+import { themeVersionValueMap } from '@osd/ui-shared-deps';
 
 import Axios from 'axios';
 // @ts-expect-error untyped internal module used to prevent axios from using xhr adapter in tests
@@ -67,6 +68,7 @@ export class RenderingService {
     http,
     status,
     uiPlugins,
+    dynamicConfig,
   }: RenderingSetupDeps): Promise<InternalRenderingServiceSetup> {
     const [opensearchDashboardsConfig, serverConfig] = await Promise.all([
       this.coreContext.configService
@@ -102,15 +104,21 @@ export class RenderingService {
           false;
 
         // At the very least, the schema should define a default theme; the '' will be unreachable
-        const themeVersion =
+        const configuredThemeVersion =
           (settings.user?.['theme:version']?.userValue ??
             uiSettings.getOverrideOrDefault('theme:version')) ||
           '';
+        // Validate themeVersion is in valid format
+        const themeVersion =
+          themeVersionValueMap[configuredThemeVersion] ||
+          (uiSettings.getDefault('theme:version') as string);
 
         const brandingAssignment = await this.assignBrandingConfig(
           darkMode,
           opensearchDashboardsConfig as OpenSearchDashboardsConfigType
         );
+
+        const dynamicConfigStartServices = await dynamicConfig.getStartService();
 
         const metadata: RenderingMetadata = {
           strictCsp: http.csp.strict,
@@ -137,7 +145,15 @@ export class RenderingService {
               [...uiPlugins.public].map(async ([id, plugin]) => ({
                 id,
                 plugin,
-                config: await this.getUiConfig(uiPlugins, id),
+                // TODO Scope the client so that only exposedToBrowser configs are exposed
+                config: this.coreContext.dynamicConfigService.hasDefaultConfigs({ name: id })
+                  ? await dynamicConfigStartServices.getClient().getConfig(
+                      { name: id },
+                      {
+                        asyncLocalStorageContext: dynamicConfigStartServices.getAsyncLocalStore()!,
+                      }
+                    )
+                  : await this.getUiConfig(uiPlugins, id),
               }))
             ),
             legacyMetadata: {

@@ -64,7 +64,7 @@ export const mountManagementSection = async ({
   dataSourceEnabled,
   dataSourceManagement,
 }: MountParams) => {
-  const [coreStart, { data, uiActions }, pluginStart] = await core.getStartServices();
+  const [coreStart, { data, uiActions, navigation }, pluginStart] = await core.getStartServices();
   const { element, history, setBreadcrumbs } = mountParams;
   if (allowedObjectTypes === undefined) {
     allowedObjectTypes = await getAllowedTypes(coreStart.http);
@@ -89,6 +89,8 @@ export const mountManagementSection = async ({
     return children! as React.ReactElement;
   };
 
+  const useUpdatedUX = coreStart.uiSettings.get('home:useNewHomePage');
+
   const content = (
     <Router history={history}>
       <Switch>
@@ -101,6 +103,8 @@ export const mountManagementSection = async ({
                 serviceRegistry={serviceRegistry}
                 setBreadcrumbs={setBreadcrumbs}
                 history={history}
+                useUpdatedUX={useUpdatedUX}
+                navigation={navigation}
               />
             </Suspense>
           </RedirectToHomeIfUnauthorized>
@@ -119,6 +123,8 @@ export const mountManagementSection = async ({
                 setBreadcrumbs={setBreadcrumbs}
                 dataSourceEnabled={dataSourceEnabled}
                 dataSourceManagement={dataSourceManagement}
+                navigation={navigation}
+                useUpdatedUX={useUpdatedUX}
               />
             </Suspense>
           </RedirectToHomeIfUnauthorized>
@@ -127,10 +133,22 @@ export const mountManagementSection = async ({
     </Router>
   );
 
+  const pageContentPaddingSize = useUpdatedUX
+    ? // align with new header
+      {
+        paddingSize: 'm' as const,
+      }
+    : {};
+
   ReactDOM.render(
     <I18nProvider>
       {mountParams.wrapInPage ? (
-        <EuiPageContent hasShadow={false} hasBorder={false} color="transparent">
+        <EuiPageContent
+          hasShadow={false}
+          hasBorder={false}
+          color="transparent"
+          {...pageContentPaddingSize}
+        >
           {content}
         </EuiPageContent>
       ) : (

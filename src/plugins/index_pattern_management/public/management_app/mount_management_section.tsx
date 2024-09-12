@@ -66,11 +66,21 @@ export async function mountManagementSection(
   dataSource?: DataSourcePluginSetup
 ) {
   const [
-    { chrome, application, savedObjects, uiSettings, notifications, overlays, http, docLinks },
-    { data },
+    {
+      chrome,
+      application,
+      savedObjects,
+      uiSettings,
+      notifications,
+      overlays,
+      http,
+      docLinks,
+      workspaces,
+    },
+    { data, navigation },
     indexPatternManagementStart,
   ] = await getStartServices();
-  const canSave = Boolean(application.capabilities.indexPatterns.save);
+  const canSave = Boolean(application.capabilities?.indexPatterns?.save);
   const dataSourceEnabled = dataSource?.dataSourceEnabled ?? false;
   const hideLocalCluster = dataSource?.hideLocalCluster ?? false;
 
@@ -83,6 +93,7 @@ export async function mountManagementSection(
     application,
     savedObjects,
     uiSettings,
+    navigationUI: navigation.ui,
     notifications,
     overlays,
     http,
@@ -93,7 +104,10 @@ export async function mountManagementSection(
     getMlCardState,
     dataSourceEnabled,
     hideLocalCluster,
+    workspaces,
   };
+
+  const showActionsInHeader = uiSettings.get('home:useNewHomePage');
 
   const content = (
     <Router history={params.history}>
@@ -118,7 +132,12 @@ export async function mountManagementSection(
     <OpenSearchDashboardsContextProvider services={deps}>
       <I18nProvider>
         {params.wrapInPage ? (
-          <EuiPageContent hasShadow={false} hasBorder={false} color="transparent">
+          <EuiPageContent
+            hasShadow={false}
+            hasBorder={false}
+            color="transparent"
+            paddingSize={showActionsInHeader ? 'm' : 'l'}
+          >
             {content}
           </EuiPageContent>
         ) : (

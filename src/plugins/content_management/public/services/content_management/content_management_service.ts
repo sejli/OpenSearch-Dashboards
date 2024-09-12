@@ -4,7 +4,7 @@
  */
 
 import { Page } from './page';
-import { ContentProvider, PageConfig } from './types';
+import { ContentProvider, PageConfig, Section } from './types';
 
 export class ContentManagementService {
   contentProviders: Map<string, ContentProvider> = new Map();
@@ -33,13 +33,28 @@ export class ContentManagementService {
   };
 
   registerContentProvider = (provider: ContentProvider) => {
-    if (this.contentProviders.get(provider.id)) {
-      throw new Error(`Cannot register content provider with the same id ${provider.id}`);
-    }
-
     this.contentProviders.set(provider.id, provider);
 
-    const targetArea = provider.getTargetArea();
+    const area = provider.getTargetArea();
+    const targetAreas: string[] = Array.isArray(area) ? [...area] : [area];
+    for (const targetArea of targetAreas) {
+      const [pageId, sectionId] = targetArea.split('/');
+
+      if (!pageId || !sectionId) {
+        throw new Error('getTargetArea() should return a string in format {pageId}/{sectionId}');
+      }
+
+      const page = this.getPage(pageId);
+      if (page) {
+        page.addContent(sectionId, provider.getContent());
+      }
+    }
+  };
+
+  updatePageSection = (
+    targetArea: string,
+    callback: (section: Section | null, err?: Error) => Section | null
+  ) => {
     const [pageId, sectionId] = targetArea.split('/');
 
     if (!pageId || !sectionId) {
@@ -48,7 +63,7 @@ export class ContentManagementService {
 
     const page = this.getPage(pageId);
     if (page) {
-      page.addContent(sectionId, provider.getContent());
+      page.updateSectionInput(sectionId, callback);
     }
   };
 

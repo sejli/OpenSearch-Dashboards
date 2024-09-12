@@ -13,25 +13,22 @@ import {
   getDataSourcesList,
   convertNavGroupToWorkspaceUseCase,
   isEqualWorkspaceUseCase,
-  USE_CASE_PREFIX,
   prependWorkspaceToBreadcrumbs,
+  getIsOnlyAllowEssentialUseCase,
 } from './utils';
 import { WorkspaceAvailability } from '../../../core/public';
 import { coreMock } from '../../../core/public/mocks';
-import { WORKSPACE_DETAIL_APP_ID, WORKSPACE_USE_CASES } from '../common/constants';
+import { WORKSPACE_DETAIL_APP_ID, USE_CASE_PREFIX } from '../common/constants';
+import { SigV4ServiceName } from '../../../plugins/data_source/common/data_sources';
+import { createMockedRegisteredUseCases } from './mocks';
 
 const startMock = coreMock.createStart();
-const STATIC_USE_CASES = [
-  WORKSPACE_USE_CASES.observability,
-  WORKSPACE_USE_CASES['security-analytics'],
-  WORKSPACE_USE_CASES.search,
-  WORKSPACE_USE_CASES.analytics,
-];
+const STATIC_USE_CASES = createMockedRegisteredUseCases();
 const useCaseMock = {
   id: 'foo',
   title: 'Foo',
   description: 'Foo description',
-  features: ['bar'],
+  features: [{ id: 'bar' }],
   systematic: false,
   order: 1,
 };
@@ -347,7 +344,7 @@ describe('workspace utils: isFeatureIdInsideUseCase', () => {
           id: 'foo',
           title: 'Foo',
           description: 'Foo description',
-          features: ['discover'],
+          features: [{ id: 'discover' }],
         },
       ])
     ).toBe(true);
@@ -378,8 +375,17 @@ describe('workspace utils: getDataSourcesList', () => {
       savedObjects: [
         {
           id: 'id1',
-          get: () => {
-            return 'title1';
+          get: (param: string) => {
+            switch (param) {
+              case 'title':
+                return 'title1';
+              case 'description':
+                return 'description1';
+              case 'dataSourceEngineType':
+                return 'dataSourceEngineType1';
+              case 'auth':
+                return 'mock_value';
+            }
           },
         },
       ],
@@ -388,6 +394,10 @@ describe('workspace utils: getDataSourcesList', () => {
       {
         id: 'id1',
         title: 'title1',
+        auth: 'mock_value',
+        description: 'description1',
+        dataSourceEngineType: 'dataSourceEngineType1',
+        workspaces: [],
       },
     ]);
   });
@@ -398,6 +408,56 @@ describe('workspace utils: getDataSourcesList', () => {
   });
 });
 
+describe('workspace utils: getIsOnlyAllowEssentialUseCase', () => {
+  const mockedSavedObjectClient = startMock.savedObjects.client;
+
+  it('should return true when all data sources are serverless', async () => {
+    mockedSavedObjectClient.find = jest.fn().mockResolvedValue({
+      savedObjects: [
+        {
+          id: 'id1',
+          get: () => {
+            return {
+              credentials: {
+                service: SigV4ServiceName.OpenSearchServerless,
+              },
+            };
+          },
+        },
+      ],
+    });
+    expect(await getIsOnlyAllowEssentialUseCase(mockedSavedObjectClient)).toBe(true);
+  });
+
+  it('should return false when not all data sources are serverless', async () => {
+    mockedSavedObjectClient.find = jest.fn().mockResolvedValue({
+      savedObjects: [
+        {
+          id: 'id1',
+          get: () => {
+            return {
+              credentials: {
+                service: SigV4ServiceName.OpenSearchServerless,
+              },
+            };
+          },
+        },
+        {
+          id: 'id2',
+          get: () => {
+            return {
+              credentials: {
+                service: SigV4ServiceName.OpenSearch,
+              },
+            };
+          },
+        },
+      ],
+    });
+    expect(await getIsOnlyAllowEssentialUseCase(mockedSavedObjectClient)).toBe(false);
+  });
+});
+
 describe('workspace utils: convertNavGroupToWorkspaceUseCase', () => {
   it('should convert nav group to consistent workspace use case', () => {
     expect(
@@ -405,14 +465,16 @@ describe('workspace utils: convertNavGroupToWorkspaceUseCase', () => {
         id: 'foo',
         title: 'Foo',
         description: 'Foo description',
-        navLinks: [{ id: 'bar' }],
+        navLinks: [{ id: 'bar', title: 'Bar' }],
+        icon: 'wsAnalytics',
       })
     ).toEqual({
       id: 'foo',
       title: 'Foo',
       description: 'Foo description',
-      features: ['bar'],
+      features: [{ id: 'bar', title: 'Bar' }],
       systematic: false,
+      icon: 'wsAnalytics',
     });
 
     expect(
@@ -420,14 +482,14 @@ describe('workspace utils: convertNavGroupToWorkspaceUseCase', () => {
         id: 'foo',
         title: 'Foo',
         description: 'Foo description',
-        navLinks: [{ id: 'bar' }],
+        navLinks: [{ id: 'bar', title: 'Bar' }],
         type: NavGroupType.SYSTEM,
       })
     ).toEqual({
       id: 'foo',
       title: 'Foo',
       description: 'Foo description',
-      features: ['bar'],
+      features: [{ id: 'bar', title: 'Bar' }],
       systematic: true,
     });
   });
@@ -482,13 +544,53 @@ describe('workspace utils: isEqualWorkspaceUseCase', () => {
       })
     ).toEqual(false);
   });
-  it('should return false when features content not equal', () => {
+  it('should return false when features id not equal', () => {
     expect(
       isEqualWorkspaceUseCase(useCaseMock, {
         ...useCaseMock,
-        features: ['baz'],
+        features: [{ id: 'baz' }],
       })
     ).toEqual(false);
+  });
+  it('should return false when features title not equal', () => {
+    expect(
+      isEqualWorkspaceUseCase(useCaseMock, {
+        ...useCaseMock,
+        features: [{ id: 'bar', title: 'Baz' }],
+      })
+    ).toEqual(false);
+  });
+  it('should return false for duplicate features', () => {
+    expect(
+      isEqualWorkspaceUseCase(
+        { ...useCaseMock, features: [useCaseMock.features[0], useCaseMock.features[0]] },
+        {
+          ...useCaseMock,
+          features: [
+            useCaseMock.features[0],
+            {
+              id: 'another',
+              title: 'Another',
+            },
+          ],
+        }
+      )
+    ).toEqual(false);
+  });
+  it('should return true for multi same features', () => {
+    const anotherFeature = {
+      id: 'another',
+      title: 'Another',
+    };
+    expect(
+      isEqualWorkspaceUseCase(
+        { ...useCaseMock, features: [useCaseMock.features[0], anotherFeature] },
+        {
+          ...useCaseMock,
+          features: [useCaseMock.features[0], anotherFeature],
+        }
+      )
+    ).toEqual(true);
   });
   it('should return true when all properties equal', () => {
     expect(
@@ -518,7 +620,7 @@ describe('workspace utils: prependWorkspaceToBreadcrumbs', () => {
     expect(coreStart.chrome.setBreadcrumbsEnricher).not.toHaveBeenCalled();
   });
 
-  it('should enrich breadcrumbs when in a workspace and use workspace use case as current nav group', async () => {
+  it('should enrich breadcrumbs when in a workspace and add workspace name into breadcrumbs', async () => {
     const navGroupSearch = {
       id: 'search',
       title: 'Search',
@@ -546,7 +648,7 @@ describe('workspace utils: prependWorkspaceToBreadcrumbs', () => {
     const breadcrumbs = [{ text: 'test app' }];
     let enrichedBreadcrumbs = enricher?.(breadcrumbs);
     expect(enrichedBreadcrumbs).toHaveLength(3);
-    expect(enrichedBreadcrumbs?.[1].text).toEqual('Search');
+    expect(enrichedBreadcrumbs?.[1].text).toEqual('test workspace 1');
 
     // ignore current nav group
     prependWorkspaceToBreadcrumbs(coreStart, workspace, 'app1', navGroupDashboards, {
@@ -561,7 +663,7 @@ describe('workspace utils: prependWorkspaceToBreadcrumbs', () => {
 
     enrichedBreadcrumbs = enricher?.(breadcrumbs);
     expect(enrichedBreadcrumbs).toHaveLength(3);
-    expect(enrichedBreadcrumbs?.[1].text).toEqual('Search');
+    expect(enrichedBreadcrumbs?.[1].text).toEqual('test workspace 1');
   });
 
   it('should enrich breadcrumbs when in a workspace with all use case and use selected nav group', async () => {

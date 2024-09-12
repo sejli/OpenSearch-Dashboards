@@ -467,7 +467,7 @@ export class DashboardPlugin
         category: undefined,
       },
     ]);
-    core.chrome.navGroup.addNavLinksToGroup(DEFAULT_NAV_GROUPS.analytics, [
+    core.chrome.navGroup.addNavLinksToGroup(DEFAULT_NAV_GROUPS.essentials, [
       {
         id: app.id,
         order: 300,
@@ -567,7 +567,12 @@ export class DashboardPlugin
       embeddable,
     } = plugins;
 
-    const SavedObjectFinder = getSavedObjectFinder(core.savedObjects, core.uiSettings);
+    const SavedObjectFinder = getSavedObjectFinder(
+      core.savedObjects,
+      core.uiSettings,
+      plugins.data,
+      core.application
+    );
 
     const changeViewAction = new ReplacePanelAction(
       core,

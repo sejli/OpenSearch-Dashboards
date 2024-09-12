@@ -465,6 +465,7 @@ exports[`LanguageSelector should select DQL if language is kuery 1`] = `
         "get": [MockFunction],
         "get$": [MockFunction],
         "getAll": [MockFunction],
+        "getDefault": [MockFunction],
         "getSaved$": [MockFunction],
         "getUpdate$": [MockFunction],
         "getUpdateErrors$": [MockFunction],
@@ -480,8 +481,13 @@ exports[`LanguageSelector should select DQL if language is kuery 1`] = `
   }
 >
   <QueryLanguageSelector
-    language="kuery"
-    onSelectLanguage={[Function]}
+    onSelectLanguage={[MockFunction]}
+    query={
+      Object {
+        "language": "kuery",
+        "query": "",
+      }
+    }
   >
     <EuiPopover
       anchorPosition="downLeft"
@@ -526,6 +532,7 @@ exports[`LanguageSelector should select DQL if language is kuery 1`] = `
             >
               <EuiButtonContent
                 className="euiButtonEmpty__content"
+                iconGap="m"
                 iconSide="right"
                 iconSize="m"
                 iconType="arrowDown"
@@ -1032,6 +1039,7 @@ exports[`LanguageSelector should select lucene if language is lucene 1`] = `
         "get": [MockFunction],
         "get$": [MockFunction],
         "getAll": [MockFunction],
+        "getDefault": [MockFunction],
         "getSaved$": [MockFunction],
         "getUpdate$": [MockFunction],
         "getUpdateErrors$": [MockFunction],
@@ -1047,8 +1055,13 @@ exports[`LanguageSelector should select lucene if language is lucene 1`] = `
   }
 >
   <QueryLanguageSelector
-    language="lucene"
-    onSelectLanguage={[Function]}
+    onSelectLanguage={[MockFunction]}
+    query={
+      Object {
+        "language": "lucene",
+        "query": "",
+      }
+    }
   >
     <EuiPopover
       anchorPosition="downLeft"
@@ -1093,6 +1106,7 @@ exports[`LanguageSelector should select lucene if language is lucene 1`] = `
             >
               <EuiButtonContent
                 className="euiButtonEmpty__content"
+                iconGap="m"
                 iconSide="right"
                 iconSize="m"
                 iconType="arrowDown"

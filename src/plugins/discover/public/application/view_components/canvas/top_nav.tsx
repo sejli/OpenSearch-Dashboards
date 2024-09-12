@@ -7,8 +7,13 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Query, TimeRange } from 'src/plugins/data/common';
 import { createPortal } from 'react-dom';
 import { EuiButtonIcon, EuiFlexGroup, EuiFlexItem, EuiToolTip } from '@elastic/eui';
+import { i18n } from '@osd/i18n';
 import { AppMountParameters } from '../../../../../../core/public';
-import { connectStorageToQueryState, opensearchFilters } from '../../../../../data/public';
+import {
+  connectStorageToQueryState,
+  opensearchFilters,
+  QueryStatus,
+} from '../../../../../data/public';
 import { useOpenSearchDashboards } from '../../../../../opensearch_dashboards_react/public';
 import { PLUGIN_ID } from '../../../../common';
 import { DiscoverViewServices } from '../../../build_services';
@@ -19,7 +24,8 @@ import { useDiscoverContext } from '../context';
 import { useDispatch, setSavedQuery, useSelector } from '../../utils/state_management';
 
 import './discover_canvas.scss';
-import { useDataSetManager } from '../utils/use_dataset_manager';
+import { TopNavMenuItemRenderType } from '../../../../../navigation/public';
+import { ResultStatus } from '../utils';
 
 export interface TopNavProps {
   opts: {
@@ -33,8 +39,10 @@ export interface TopNavProps {
 
 export const TopNav = ({ opts, showSaveQuery, isEnhancementsEnabled }: TopNavProps) => {
   const { services } = useOpenSearchDashboards<DiscoverViewServices>();
-  const { inspectorAdapters, savedSearch, indexPattern } = useDiscoverContext();
+  const { data$, inspectorAdapters, savedSearch, indexPattern } = useDiscoverContext();
   const [indexPatterns, setIndexPatterns] = useState<IndexPattern[] | undefined>(undefined);
+  const [screenTitle, setScreenTitle] = useState<string>('');
+  const [queryStatus, setQueryStatus] = useState<QueryStatus>({ status: ResultStatus.READY });
   const state = useSelector((s) => s.discover);
   const dispatch = useDispatch();
 
@@ -51,6 +59,8 @@ export const TopNav = ({ opts, showSaveQuery, isEnhancementsEnabled }: TopNavPro
     uiSettings,
   } = services;
 
+  const showActionsInGroup = uiSettings.get('home:useNewHomePage');
+
   const topNavLinks = savedSearch
     ? getTopNavLinks(services, inspectorAdapters, savedSearch, isEnhancementsEnabled)
     : [];
@@ -66,23 +76,33 @@ export const TopNav = ({ opts, showSaveQuery, isEnhancementsEnabled }: TopNavPro
   );
 
   useEffect(() => {
+    const subscription = data$.subscribe((queryData) => {
+      const result = {
+        status: queryData.status,
+        ...queryData.queryStatus,
+      };
+      setQueryStatus(result);
+    });
+  }, [data$]);
+
+  useEffect(() => {
     let isMounted = true;
-    const initializeDataSet = async () => {
+    const initializeDataset = async () => {
       await data.indexPatterns.ensureDefaultIndexPattern();
       const defaultIndexPattern = await data.indexPatterns.getDefault();
-      const { dataSetManager } = data.query;
-      dataSetManager.initWithIndexPattern(defaultIndexPattern);
-      const defaultDataSet = dataSetManager.getDefaultDataSet();
+      // TODO: ROCKY do we need this?
+      // const queryString = data.query.queryString;
+      // const defaultDataset = queryString.getDatasetService().getDefault();
 
       if (!isMounted) return;
 
       setIndexPatterns(defaultIndexPattern ? [defaultIndexPattern] : undefined);
-      if (defaultDataSet) {
-        dataSetManager.setDataSet(defaultDataSet);
-      }
+      // if (defaultDataset) {
+      //   datasetManager.setDataset(defaultDataset);
+      // }
     };
 
-    initializeDataSet();
+    initializeDataset();
 
     return () => {
       isMounted = false;
@@ -100,6 +120,15 @@ export const TopNav = ({ opts, showSaveQuery, isEnhancementsEnabled }: TopNavPro
     }
   }, [chrome, getUrlForApp, savedSearch?.id, savedSearch?.title]);
 
+  useEffect(() => {
+    setScreenTitle(
+      savedSearch?.title ||
+        i18n.translate('discover.savedSearch.newTitle', {
+          defaultMessage: 'New search',
+        })
+    );
+  }, [savedSearch?.title]);
+
   const showDatePicker = useMemo(() => (indexPattern ? indexPattern.isTimeBased() : false), [
     indexPattern,
   ]);
@@ -108,10 +137,12 @@ export const TopNav = ({ opts, showSaveQuery, isEnhancementsEnabled }: TopNavPro
     dispatch(setSavedQuery(newSavedQueryId));
   };
 
+  const displayToNavLinkInPortal =
+    isEnhancementsEnabled && !!opts?.optionalRef?.topLinkRef?.current && !showActionsInGroup;
+
   return (
     <>
-      {isEnhancementsEnabled &&
-        !!opts?.optionalRef?.topLinkRef?.current &&
+      {displayToNavLinkInPortal &&
         createPortal(
           <EuiFlexGroup gutterSize="m">
             {topNavLinks.map((topNavLink) => (
@@ -131,11 +162,10 @@ export const TopNav = ({ opts, showSaveQuery, isEnhancementsEnabled }: TopNavPro
           opts.optionalRef.topLinkRef.current
         )}
       <TopNavMenu
-        className={isEnhancementsEnabled ? 'topNav hidden' : ''}
         appName={PLUGIN_ID}
-        config={topNavLinks}
-        showSearchBar
-        showDatePicker={showDatePicker}
+        config={displayToNavLinkInPortal ? [] : topNavLinks}
+        showSearchBar={TopNavMenuItemRenderType.IN_PLACE}
+        showDatePicker={showDatePicker && TopNavMenuItemRenderType.IN_PORTAL}
         showSaveQuery={showSaveQuery}
         useDefaultBehaviors
         setMenuMountPoint={opts.setHeaderActionMenu}
@@ -144,6 +174,9 @@ export const TopNav = ({ opts, showSaveQuery, isEnhancementsEnabled }: TopNavPro
         savedQueryId={state.savedQuery}
         onSavedQueryIdChange={updateSavedQueryId}
         datePickerRef={opts?.optionalRef?.datePickerRef}
+        groupActions={showActionsInGroup}
+        screenTitle={screenTitle}
+        queryStatus={queryStatus}
       />
     </>
   );

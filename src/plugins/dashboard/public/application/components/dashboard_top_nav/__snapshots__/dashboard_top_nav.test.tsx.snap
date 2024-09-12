@@ -121,6 +121,12 @@ exports[`Dashboard top nav render in embed mode 1`] = `
               "navigateToApp": [MockFunction],
               "navigateToUrl": [MockFunction],
               "registerMountContext": [MockFunction],
+              "setAppBadgeControls": [MockFunction],
+              "setAppBottomControls": [MockFunction],
+              "setAppCenterControls": [MockFunction],
+              "setAppDescriptionControls": [MockFunction],
+              "setAppLeftControls": [MockFunction],
+              "setAppRightControls": [MockFunction],
             },
             "chrome": Object {
               "addApplicationClass": [MockFunction],
@@ -134,6 +140,7 @@ exports[`Dashboard top nav render in embed mode 1`] = `
               "getBreadcrumbsEnricher$": [MockFunction],
               "getCustomNavLink$": [MockFunction],
               "getHeaderComponent": [MockFunction],
+              "getHeaderVariant$": [MockFunction],
               "getHelpExtension$": [MockFunction],
               "getIsNavDrawerLocked$": [MockFunction],
               "getIsVisible$": [MockFunction],
@@ -237,6 +244,7 @@ exports[`Dashboard top nav render in embed mode 1`] = `
               "setBreadcrumbs": [MockFunction],
               "setBreadcrumbsEnricher": [MockFunction],
               "setCustomNavLink": [MockFunction],
+              "setHeaderVariant": [MockFunction],
               "setHelpExtension": [MockFunction],
               "setHelpSupportUrl": [MockFunction],
               "setIsVisible": [MockFunction],
@@ -317,15 +325,6 @@ exports[`Dashboard top nav render in embed mode 1`] = `
               },
               "query": Object {
                 "addToQueryLog": [MockFunction],
-                "dataSetManager": Object {
-                  "fetchDefaultDataSet": [MockFunction],
-                  "getDataSet": [MockFunction],
-                  "getDefaultDataSet": [MockFunction],
-                  "getUpdates$": [MockFunction],
-                  "init": [MockFunction],
-                  "initWithIndexPattern": [MockFunction],
-                  "setDataSet": [MockFunction],
-                },
                 "filterManager": Object {
                   "addFilters": [MockFunction],
                   "getAppFilters": [MockFunction],
@@ -344,10 +343,19 @@ exports[`Dashboard top nav render in embed mode 1`] = `
                 },
                 "getOpenSearchQuery": [MockFunction],
                 "queryString": Object {
+                  "addToQueryHistory": [MockFunction],
+                  "changeQueryHistory": [MockFunction],
                   "clearQuery": [MockFunction],
+                  "clearQueryHistory": [MockFunction],
                   "formatQuery": [MockFunction],
+                  "getDatasetService": [MockFunction],
                   "getDefaultQuery": [MockFunction],
+                  "getInitialQuery": [MockFunction],
+                  "getInitialQueryByDataset": [MockFunction],
+                  "getInitialQueryByLanguage": [MockFunction],
+                  "getLanguageService": [MockFunction],
                   "getQuery": [MockFunction],
+                  "getQueryHistory": [MockFunction],
                   "getUpdates$": [MockFunction],
                   "setQuery": [MockFunction],
                 },
@@ -409,14 +417,9 @@ exports[`Dashboard top nav render in embed mode 1`] = `
                 "showError": [MockFunction],
               },
               "ui": Object {
-                "DataSetNavigator": [MockFunction],
                 "IndexPatternSelect": [MockFunction],
                 "SearchBar": [MockFunction],
-                "Settings": undefined,
                 "SuggestionsComponent": [MockFunction],
-                "dataSetContainer$": Observable {
-                  "_isScalar": false,
-                },
               },
             },
             "docLinks": Object {
@@ -829,6 +832,7 @@ exports[`Dashboard top nav render in embed mode 1`] = `
             },
             "navigation": Object {
               "ui": Object {
+                "HeaderControl": [Function],
                 "TopNavMenu": [Function],
               },
             },
@@ -898,9 +902,29 @@ exports[`Dashboard top nav render in embed mode 1`] = `
               "remove": [MockFunction],
             },
             "uiSettings": Object {
-              "get": [MockFunction],
+              "get": [MockFunction] {
+                "calls": Array [
+                  Array [
+                    "home:useNewHomePage",
+                  ],
+                  Array [
+                    "home:useNewHomePage",
+                  ],
+                ],
+                "results": Array [
+                  Object {
+                    "type": "return",
+                    "value": undefined,
+                  },
+                  Object {
+                    "type": "return",
+                    "value": undefined,
+                  },
+                ],
+              },
               "get$": [MockFunction],
               "getAll": [MockFunction],
+              "getDefault": [MockFunction],
               "getSaved$": [MockFunction],
               "getUpdate$": [MockFunction],
               "getUpdateErrors$": [MockFunction],
@@ -927,6 +951,15 @@ exports[`Dashboard top nav render in embed mode 1`] = `
               "reportUiStats": [MockFunction],
             },
             "workspaces": Object {
+              "client$": BehaviorSubject {
+                "_isScalar": false,
+                "_value": null,
+                "closed": false,
+                "hasError": false,
+                "isStopped": false,
+                "observers": Array [],
+                "thrownError": null,
+              },
               "currentWorkspace$": BehaviorSubject {
                 "_isScalar": false,
                 "_value": null,
@@ -1003,6 +1036,7 @@ exports[`Dashboard top nav render in embed mode 1`] = `
           <TopNavMenu
             appName="dashboard"
             className="osdTopNavMenu-isFullScreen"
+            groupActions={false}
             indexPatterns={Array []}
             onQuerySubmit={[Function]}
             onSavedQueryIdChange={[Function]}
@@ -1015,6 +1049,10 @@ exports[`Dashboard top nav render in embed mode 1`] = `
             showSaveQuery={true}
             showSearchBar={false}
             useDefaultBehaviors={true}
+          />
+          <TopNavControls
+            controls={Array []}
+            setMountPoint={[MockFunction]}
           />
         </Memo(TopNav)>
       </Provider>
@@ -1144,6 +1182,12 @@ exports[`Dashboard top nav render in embed mode, and force hide filter bar 1`] =
               "navigateToApp": [MockFunction],
               "navigateToUrl": [MockFunction],
               "registerMountContext": [MockFunction],
+              "setAppBadgeControls": [MockFunction],
+              "setAppBottomControls": [MockFunction],
+              "setAppCenterControls": [MockFunction],
+              "setAppDescriptionControls": [MockFunction],
+              "setAppLeftControls": [MockFunction],
+              "setAppRightControls": [MockFunction],
             },
             "chrome": Object {
               "addApplicationClass": [MockFunction],
@@ -1157,6 +1201,7 @@ exports[`Dashboard top nav render in embed mode, and force hide filter bar 1`] =
               "getBreadcrumbsEnricher$": [MockFunction],
               "getCustomNavLink$": [MockFunction],
               "getHeaderComponent": [MockFunction],
+              "getHeaderVariant$": [MockFunction],
               "getHelpExtension$": [MockFunction],
               "getIsNavDrawerLocked$": [MockFunction],
               "getIsVisible$": [MockFunction],
@@ -1260,6 +1305,7 @@ exports[`Dashboard top nav render in embed mode, and force hide filter bar 1`] =
               "setBreadcrumbs": [MockFunction],
               "setBreadcrumbsEnricher": [MockFunction],
               "setCustomNavLink": [MockFunction],
+              "setHeaderVariant": [MockFunction],
               "setHelpExtension": [MockFunction],
               "setHelpSupportUrl": [MockFunction],
               "setIsVisible": [MockFunction],
@@ -1340,15 +1386,6 @@ exports[`Dashboard top nav render in embed mode, and force hide filter bar 1`] =
               },
               "query": Object {
                 "addToQueryLog": [MockFunction],
-                "dataSetManager": Object {
-                  "fetchDefaultDataSet": [MockFunction],
-                  "getDataSet": [MockFunction],
-                  "getDefaultDataSet": [MockFunction],
-                  "getUpdates$": [MockFunction],
-                  "init": [MockFunction],
-                  "initWithIndexPattern": [MockFunction],
-                  "setDataSet": [MockFunction],
-                },
                 "filterManager": Object {
                   "addFilters": [MockFunction],
                   "getAppFilters": [MockFunction],
@@ -1367,10 +1404,19 @@ exports[`Dashboard top nav render in embed mode, and force hide filter bar 1`] =
                 },
                 "getOpenSearchQuery": [MockFunction],
                 "queryString": Object {
+                  "addToQueryHistory": [MockFunction],
+                  "changeQueryHistory": [MockFunction],
                   "clearQuery": [MockFunction],
+                  "clearQueryHistory": [MockFunction],
                   "formatQuery": [MockFunction],
+                  "getDatasetService": [MockFunction],
                   "getDefaultQuery": [MockFunction],
+                  "getInitialQuery": [MockFunction],
+                  "getInitialQueryByDataset": [MockFunction],
+                  "getInitialQueryByLanguage": [MockFunction],
+                  "getLanguageService": [MockFunction],
                   "getQuery": [MockFunction],
+                  "getQueryHistory": [MockFunction],
                   "getUpdates$": [MockFunction],
                   "setQuery": [MockFunction],
                 },
@@ -1432,14 +1478,9 @@ exports[`Dashboard top nav render in embed mode, and force hide filter bar 1`] =
                 "showError": [MockFunction],
               },
               "ui": Object {
-                "DataSetNavigator": [MockFunction],
                 "IndexPatternSelect": [MockFunction],
                 "SearchBar": [MockFunction],
-                "Settings": undefined,
                 "SuggestionsComponent": [MockFunction],
-                "dataSetContainer$": Observable {
-                  "_isScalar": false,
-                },
               },
             },
             "docLinks": Object {
@@ -1852,6 +1893,7 @@ exports[`Dashboard top nav render in embed mode, and force hide filter bar 1`] =
             },
             "navigation": Object {
               "ui": Object {
+                "HeaderControl": [Function],
                 "TopNavMenu": [Function],
               },
             },
@@ -1921,9 +1963,29 @@ exports[`Dashboard top nav render in embed mode, and force hide filter bar 1`] =
               "remove": [MockFunction],
             },
             "uiSettings": Object {
-              "get": [MockFunction],
+              "get": [MockFunction] {
+                "calls": Array [
+                  Array [
+                    "home:useNewHomePage",
+                  ],
+                  Array [
+                    "home:useNewHomePage",
+                  ],
+                ],
+                "results": Array [
+                  Object {
+                    "type": "return",
+                    "value": undefined,
+                  },
+                  Object {
+                    "type": "return",
+                    "value": undefined,
+                  },
+                ],
+              },
               "get$": [MockFunction],
               "getAll": [MockFunction],
+              "getDefault": [MockFunction],
               "getSaved$": [MockFunction],
               "getUpdate$": [MockFunction],
               "getUpdateErrors$": [MockFunction],
@@ -1950,6 +2012,15 @@ exports[`Dashboard top nav render in embed mode, and force hide filter bar 1`] =
               "reportUiStats": [MockFunction],
             },
             "workspaces": Object {
+              "client$": BehaviorSubject {
+                "_isScalar": false,
+                "_value": null,
+                "closed": false,
+                "hasError": false,
+                "isStopped": false,
+                "observers": Array [],
+                "thrownError": null,
+              },
               "currentWorkspace$": BehaviorSubject {
                 "_isScalar": false,
                 "_value": null,
@@ -2026,6 +2097,7 @@ exports[`Dashboard top nav render in embed mode, and force hide filter bar 1`] =
           <TopNavMenu
             appName="dashboard"
             className="osdTopNavMenu-isFullScreen"
+            groupActions={false}
             indexPatterns={Array []}
             onQuerySubmit={[Function]}
             onSavedQueryIdChange={[Function]}
@@ -2038,6 +2110,10 @@ exports[`Dashboard top nav render in embed mode, and force hide filter bar 1`] =
             showSaveQuery={true}
             showSearchBar={false}
             useDefaultBehaviors={true}
+          />
+          <TopNavControls
+            controls={Array []}
+            setMountPoint={[MockFunction]}
           />
         </Memo(TopNav)>
       </Provider>
@@ -2167,6 +2243,12 @@ exports[`Dashboard top nav render in embed mode, components can be forced show b
               "navigateToApp": [MockFunction],
               "navigateToUrl": [MockFunction],
               "registerMountContext": [MockFunction],
+              "setAppBadgeControls": [MockFunction],
+              "setAppBottomControls": [MockFunction],
+              "setAppCenterControls": [MockFunction],
+              "setAppDescriptionControls": [MockFunction],
+              "setAppLeftControls": [MockFunction],
+              "setAppRightControls": [MockFunction],
             },
             "chrome": Object {
               "addApplicationClass": [MockFunction],
@@ -2180,6 +2262,7 @@ exports[`Dashboard top nav render in embed mode, components can be forced show b
               "getBreadcrumbsEnricher$": [MockFunction],
               "getCustomNavLink$": [MockFunction],
               "getHeaderComponent": [MockFunction],
+              "getHeaderVariant$": [MockFunction],
               "getHelpExtension$": [MockFunction],
               "getIsNavDrawerLocked$": [MockFunction],
               "getIsVisible$": [MockFunction],
@@ -2283,6 +2366,7 @@ exports[`Dashboard top nav render in embed mode, components can be forced show b
               "setBreadcrumbs": [MockFunction],
               "setBreadcrumbsEnricher": [MockFunction],
               "setCustomNavLink": [MockFunction],
+              "setHeaderVariant": [MockFunction],
               "setHelpExtension": [MockFunction],
               "setHelpSupportUrl": [MockFunction],
               "setIsVisible": [MockFunction],
@@ -2363,15 +2447,6 @@ exports[`Dashboard top nav render in embed mode, components can be forced show b
               },
               "query": Object {
                 "addToQueryLog": [MockFunction],
-                "dataSetManager": Object {
-                  "fetchDefaultDataSet": [MockFunction],
-                  "getDataSet": [MockFunction],
-                  "getDefaultDataSet": [MockFunction],
-                  "getUpdates$": [MockFunction],
-                  "init": [MockFunction],
-                  "initWithIndexPattern": [MockFunction],
-                  "setDataSet": [MockFunction],
-                },
                 "filterManager": Object {
                   "addFilters": [MockFunction],
                   "getAppFilters": [MockFunction],
@@ -2390,10 +2465,19 @@ exports[`Dashboard top nav render in embed mode, components can be forced show b
                 },
                 "getOpenSearchQuery": [MockFunction],
                 "queryString": Object {
+                  "addToQueryHistory": [MockFunction],
+                  "changeQueryHistory": [MockFunction],
                   "clearQuery": [MockFunction],
+                  "clearQueryHistory": [MockFunction],
                   "formatQuery": [MockFunction],
+                  "getDatasetService": [MockFunction],
                   "getDefaultQuery": [MockFunction],
+                  "getInitialQuery": [MockFunction],
+                  "getInitialQueryByDataset": [MockFunction],
+                  "getInitialQueryByLanguage": [MockFunction],
+                  "getLanguageService": [MockFunction],
                   "getQuery": [MockFunction],
+                  "getQueryHistory": [MockFunction],
                   "getUpdates$": [MockFunction],
                   "setQuery": [MockFunction],
                 },
@@ -2455,14 +2539,9 @@ exports[`Dashboard top nav render in embed mode, components can be forced show b
                 "showError": [MockFunction],
               },
               "ui": Object {
-                "DataSetNavigator": [MockFunction],
                 "IndexPatternSelect": [MockFunction],
                 "SearchBar": [MockFunction],
-                "Settings": undefined,
                 "SuggestionsComponent": [MockFunction],
-                "dataSetContainer$": Observable {
-                  "_isScalar": false,
-                },
               },
             },
             "docLinks": Object {
@@ -2875,6 +2954,7 @@ exports[`Dashboard top nav render in embed mode, components can be forced show b
             },
             "navigation": Object {
               "ui": Object {
+                "HeaderControl": [Function],
                 "TopNavMenu": [Function],
               },
             },
@@ -2944,9 +3024,29 @@ exports[`Dashboard top nav render in embed mode, components can be forced show b
               "remove": [MockFunction],
             },
             "uiSettings": Object {
-              "get": [MockFunction],
+              "get": [MockFunction] {
+                "calls": Array [
+                  Array [
+                    "home:useNewHomePage",
+                  ],
+                  Array [
+                    "home:useNewHomePage",
+                  ],
+                ],
+                "results": Array [
+                  Object {
+                    "type": "return",
+                    "value": undefined,
+                  },
+                  Object {
+                    "type": "return",
+                    "value": undefined,
+                  },
+                ],
+              },
               "get$": [MockFunction],
               "getAll": [MockFunction],
+              "getDefault": [MockFunction],
               "getSaved$": [MockFunction],
               "getUpdate$": [MockFunction],
               "getUpdateErrors$": [MockFunction],
@@ -2973,6 +3073,15 @@ exports[`Dashboard top nav render in embed mode, components can be forced show b
               "reportUiStats": [MockFunction],
             },
             "workspaces": Object {
+              "client$": BehaviorSubject {
+                "_isScalar": false,
+                "_value": null,
+                "closed": false,
+                "hasError": false,
+                "isStopped": false,
+                "observers": Array [],
+                "thrownError": null,
+              },
               "currentWorkspace$": BehaviorSubject {
                 "_isScalar": false,
                 "_value": null,
@@ -3049,6 +3158,7 @@ exports[`Dashboard top nav render in embed mode, components can be forced show b
           <TopNavMenu
             appName="dashboard"
             className="osdTopNavMenu-isFullScreen"
+            groupActions={false}
             indexPatterns={Array []}
             onQuerySubmit={[Function]}
             onSavedQueryIdChange={[Function]}
@@ -3061,6 +3171,10 @@ exports[`Dashboard top nav render in embed mode, components can be forced show b
             showSaveQuery={true}
             showSearchBar={false}
             useDefaultBehaviors={true}
+          />
+          <TopNavControls
+            controls={Array []}
+            setMountPoint={[MockFunction]}
           />
         </Memo(TopNav)>
       </Provider>
@@ -3190,6 +3304,12 @@ exports[`Dashboard top nav render in full screen mode with appended URL param bu
               "navigateToApp": [MockFunction],
               "navigateToUrl": [MockFunction],
               "registerMountContext": [MockFunction],
+              "setAppBadgeControls": [MockFunction],
+              "setAppBottomControls": [MockFunction],
+              "setAppCenterControls": [MockFunction],
+              "setAppDescriptionControls": [MockFunction],
+              "setAppLeftControls": [MockFunction],
+              "setAppRightControls": [MockFunction],
             },
             "chrome": Object {
               "addApplicationClass": [MockFunction],
@@ -3203,6 +3323,7 @@ exports[`Dashboard top nav render in full screen mode with appended URL param bu
               "getBreadcrumbsEnricher$": [MockFunction],
               "getCustomNavLink$": [MockFunction],
               "getHeaderComponent": [MockFunction],
+              "getHeaderVariant$": [MockFunction],
               "getHelpExtension$": [MockFunction],
               "getIsNavDrawerLocked$": [MockFunction],
               "getIsVisible$": [MockFunction],
@@ -3306,6 +3427,7 @@ exports[`Dashboard top nav render in full screen mode with appended URL param bu
               "setBreadcrumbs": [MockFunction],
               "setBreadcrumbsEnricher": [MockFunction],
               "setCustomNavLink": [MockFunction],
+              "setHeaderVariant": [MockFunction],
               "setHelpExtension": [MockFunction],
               "setHelpSupportUrl": [MockFunction],
               "setIsVisible": [MockFunction],
@@ -3386,15 +3508,6 @@ exports[`Dashboard top nav render in full screen mode with appended URL param bu
               },
               "query": Object {
                 "addToQueryLog": [MockFunction],
-                "dataSetManager": Object {
-                  "fetchDefaultDataSet": [MockFunction],
-                  "getDataSet": [MockFunction],
-                  "getDefaultDataSet": [MockFunction],
-                  "getUpdates$": [MockFunction],
-                  "init": [MockFunction],
-                  "initWithIndexPattern": [MockFunction],
-                  "setDataSet": [MockFunction],
-                },
                 "filterManager": Object {
                   "addFilters": [MockFunction],
                   "getAppFilters": [MockFunction],
@@ -3413,10 +3526,19 @@ exports[`Dashboard top nav render in full screen mode with appended URL param bu
                 },
                 "getOpenSearchQuery": [MockFunction],
                 "queryString": Object {
+                  "addToQueryHistory": [MockFunction],
+                  "changeQueryHistory": [MockFunction],
                   "clearQuery": [MockFunction],
+                  "clearQueryHistory": [MockFunction],
                   "formatQuery": [MockFunction],
+                  "getDatasetService": [MockFunction],
                   "getDefaultQuery": [MockFunction],
+                  "getInitialQuery": [MockFunction],
+                  "getInitialQueryByDataset": [MockFunction],
+                  "getInitialQueryByLanguage": [MockFunction],
+                  "getLanguageService": [MockFunction],
                   "getQuery": [MockFunction],
+                  "getQueryHistory": [MockFunction],
                   "getUpdates$": [MockFunction],
                   "setQuery": [MockFunction],
                 },
@@ -3478,14 +3600,9 @@ exports[`Dashboard top nav render in full screen mode with appended URL param bu
                 "showError": [MockFunction],
               },
               "ui": Object {
-                "DataSetNavigator": [MockFunction],
                 "IndexPatternSelect": [MockFunction],
                 "SearchBar": [MockFunction],
-                "Settings": undefined,
                 "SuggestionsComponent": [MockFunction],
-                "dataSetContainer$": Observable {
-                  "_isScalar": false,
-                },
               },
             },
             "docLinks": Object {
@@ -3898,6 +4015,7 @@ exports[`Dashboard top nav render in full screen mode with appended URL param bu
             },
             "navigation": Object {
               "ui": Object {
+                "HeaderControl": [Function],
                 "TopNavMenu": [Function],
               },
             },
@@ -3967,9 +4085,29 @@ exports[`Dashboard top nav render in full screen mode with appended URL param bu
               "remove": [MockFunction],
             },
             "uiSettings": Object {
-              "get": [MockFunction],
+              "get": [MockFunction] {
+                "calls": Array [
+                  Array [
+                    "home:useNewHomePage",
+                  ],
+                  Array [
+                    "home:useNewHomePage",
+                  ],
+                ],
+                "results": Array [
+                  Object {
+                    "type": "return",
+                    "value": undefined,
+                  },
+                  Object {
+                    "type": "return",
+                    "value": undefined,
+                  },
+                ],
+              },
               "get$": [MockFunction],
               "getAll": [MockFunction],
+              "getDefault": [MockFunction],
               "getSaved$": [MockFunction],
               "getUpdate$": [MockFunction],
               "getUpdateErrors$": [MockFunction],
@@ -3996,6 +4134,15 @@ exports[`Dashboard top nav render in full screen mode with appended URL param bu
               "reportUiStats": [MockFunction],
             },
             "workspaces": Object {
+              "client$": BehaviorSubject {
+                "_isScalar": false,
+                "_value": null,
+                "closed": false,
+                "hasError": false,
+                "isStopped": false,
+                "observers": Array [],
+                "thrownError": null,
+              },
               "currentWorkspace$": BehaviorSubject {
                 "_isScalar": false,
                 "_value": null,
@@ -4072,6 +4219,7 @@ exports[`Dashboard top nav render in full screen mode with appended URL param bu
           <TopNavMenu
             appName="dashboard"
             className="osdTopNavMenu-isFullScreen"
+            groupActions={false}
             indexPatterns={Array []}
             onQuerySubmit={[Function]}
             onSavedQueryIdChange={[Function]}
@@ -4084,6 +4232,10 @@ exports[`Dashboard top nav render in full screen mode with appended URL param bu
             showSaveQuery={true}
             showSearchBar={false}
             useDefaultBehaviors={true}
+          />
+          <TopNavControls
+            controls={Array []}
+            setMountPoint={[MockFunction]}
           />
         </Memo(TopNav)>
       </Provider>
@@ -4213,6 +4365,12 @@ exports[`Dashboard top nav render in full screen mode, no componenets should be 
               "navigateToApp": [MockFunction],
               "navigateToUrl": [MockFunction],
               "registerMountContext": [MockFunction],
+              "setAppBadgeControls": [MockFunction],
+              "setAppBottomControls": [MockFunction],
+              "setAppCenterControls": [MockFunction],
+              "setAppDescriptionControls": [MockFunction],
+              "setAppLeftControls": [MockFunction],
+              "setAppRightControls": [MockFunction],
             },
             "chrome": Object {
               "addApplicationClass": [MockFunction],
@@ -4226,6 +4384,7 @@ exports[`Dashboard top nav render in full screen mode, no componenets should be 
               "getBreadcrumbsEnricher$": [MockFunction],
               "getCustomNavLink$": [MockFunction],
               "getHeaderComponent": [MockFunction],
+              "getHeaderVariant$": [MockFunction],
               "getHelpExtension$": [MockFunction],
               "getIsNavDrawerLocked$": [MockFunction],
               "getIsVisible$": [MockFunction],
@@ -4329,6 +4488,7 @@ exports[`Dashboard top nav render in full screen mode, no componenets should be 
               "setBreadcrumbs": [MockFunction],
               "setBreadcrumbsEnricher": [MockFunction],
               "setCustomNavLink": [MockFunction],
+              "setHeaderVariant": [MockFunction],
               "setHelpExtension": [MockFunction],
               "setHelpSupportUrl": [MockFunction],
               "setIsVisible": [MockFunction],
@@ -4409,15 +4569,6 @@ exports[`Dashboard top nav render in full screen mode, no componenets should be 
               },
               "query": Object {
                 "addToQueryLog": [MockFunction],
-                "dataSetManager": Object {
-                  "fetchDefaultDataSet": [MockFunction],
-                  "getDataSet": [MockFunction],
-                  "getDefaultDataSet": [MockFunction],
-                  "getUpdates$": [MockFunction],
-                  "init": [MockFunction],
-                  "initWithIndexPattern": [MockFunction],
-                  "setDataSet": [MockFunction],
-                },
                 "filterManager": Object {
                   "addFilters": [MockFunction],
                   "getAppFilters": [MockFunction],
@@ -4436,10 +4587,19 @@ exports[`Dashboard top nav render in full screen mode, no componenets should be 
                 },
                 "getOpenSearchQuery": [MockFunction],
                 "queryString": Object {
+                  "addToQueryHistory": [MockFunction],
+                  "changeQueryHistory": [MockFunction],
                   "clearQuery": [MockFunction],
+                  "clearQueryHistory": [MockFunction],
                   "formatQuery": [MockFunction],
+                  "getDatasetService": [MockFunction],
                   "getDefaultQuery": [MockFunction],
+                  "getInitialQuery": [MockFunction],
+                  "getInitialQueryByDataset": [MockFunction],
+                  "getInitialQueryByLanguage": [MockFunction],
+                  "getLanguageService": [MockFunction],
                   "getQuery": [MockFunction],
+                  "getQueryHistory": [MockFunction],
                   "getUpdates$": [MockFunction],
                   "setQuery": [MockFunction],
                 },
@@ -4501,14 +4661,9 @@ exports[`Dashboard top nav render in full screen mode, no componenets should be 
                 "showError": [MockFunction],
               },
               "ui": Object {
-                "DataSetNavigator": [MockFunction],
                 "IndexPatternSelect": [MockFunction],
                 "SearchBar": [MockFunction],
-                "Settings": undefined,
                 "SuggestionsComponent": [MockFunction],
-                "dataSetContainer$": Observable {
-                  "_isScalar": false,
-                },
               },
             },
             "docLinks": Object {
@@ -4921,6 +5076,7 @@ exports[`Dashboard top nav render in full screen mode, no componenets should be 
             },
             "navigation": Object {
               "ui": Object {
+                "HeaderControl": [Function],
                 "TopNavMenu": [Function],
               },
             },
@@ -4990,9 +5146,29 @@ exports[`Dashboard top nav render in full screen mode, no componenets should be 
               "remove": [MockFunction],
             },
             "uiSettings": Object {
-              "get": [MockFunction],
+              "get": [MockFunction] {
+                "calls": Array [
+                  Array [
+                    "home:useNewHomePage",
+                  ],
+                  Array [
+                    "home:useNewHomePage",
+                  ],
+                ],
+                "results": Array [
+                  Object {
+                    "type": "return",
+                    "value": undefined,
+                  },
+                  Object {
+                    "type": "return",
+                    "value": undefined,
+                  },
+                ],
+              },
               "get$": [MockFunction],
               "getAll": [MockFunction],
+              "getDefault": [MockFunction],
               "getSaved$": [MockFunction],
               "getUpdate$": [MockFunction],
               "getUpdateErrors$": [MockFunction],
@@ -5019,6 +5195,15 @@ exports[`Dashboard top nav render in full screen mode, no componenets should be 
               "reportUiStats": [MockFunction],
             },
             "workspaces": Object {
+              "client$": BehaviorSubject {
+                "_isScalar": false,
+                "_value": null,
+                "closed": false,
+                "hasError": false,
+                "isStopped": false,
+                "observers": Array [],
+                "thrownError": null,
+              },
               "currentWorkspace$": BehaviorSubject {
                 "_isScalar": false,
                 "_value": null,
@@ -5095,6 +5280,7 @@ exports[`Dashboard top nav render in full screen mode, no componenets should be 
           <TopNavMenu
             appName="dashboard"
             className="osdTopNavMenu-isFullScreen"
+            groupActions={false}
             indexPatterns={Array []}
             onQuerySubmit={[Function]}
             onSavedQueryIdChange={[Function]}
@@ -5107,6 +5293,10 @@ exports[`Dashboard top nav render in full screen mode, no componenets should be 
             showSaveQuery={true}
             showSearchBar={false}
             useDefaultBehaviors={true}
+          />
+          <TopNavControls
+            controls={Array []}
+            setMountPoint={[MockFunction]}
           />
         </Memo(TopNav)>
       </Provider>
@@ -5236,6 +5426,12 @@ exports[`Dashboard top nav render with all components 1`] = `
               "navigateToApp": [MockFunction],
               "navigateToUrl": [MockFunction],
               "registerMountContext": [MockFunction],
+              "setAppBadgeControls": [MockFunction],
+              "setAppBottomControls": [MockFunction],
+              "setAppCenterControls": [MockFunction],
+              "setAppDescriptionControls": [MockFunction],
+              "setAppLeftControls": [MockFunction],
+              "setAppRightControls": [MockFunction],
             },
             "chrome": Object {
               "addApplicationClass": [MockFunction],
@@ -5249,6 +5445,7 @@ exports[`Dashboard top nav render with all components 1`] = `
               "getBreadcrumbsEnricher$": [MockFunction],
               "getCustomNavLink$": [MockFunction],
               "getHeaderComponent": [MockFunction],
+              "getHeaderVariant$": [MockFunction],
               "getHelpExtension$": [MockFunction],
               "getIsNavDrawerLocked$": [MockFunction],
               "getIsVisible$": [MockFunction],
@@ -5352,6 +5549,7 @@ exports[`Dashboard top nav render with all components 1`] = `
               "setBreadcrumbs": [MockFunction],
               "setBreadcrumbsEnricher": [MockFunction],
               "setCustomNavLink": [MockFunction],
+              "setHeaderVariant": [MockFunction],
               "setHelpExtension": [MockFunction],
               "setHelpSupportUrl": [MockFunction],
               "setIsVisible": [MockFunction],
@@ -5432,15 +5630,6 @@ exports[`Dashboard top nav render with all components 1`] = `
               },
               "query": Object {
                 "addToQueryLog": [MockFunction],
-                "dataSetManager": Object {
-                  "fetchDefaultDataSet": [MockFunction],
-                  "getDataSet": [MockFunction],
-                  "getDefaultDataSet": [MockFunction],
-                  "getUpdates$": [MockFunction],
-                  "init": [MockFunction],
-                  "initWithIndexPattern": [MockFunction],
-                  "setDataSet": [MockFunction],
-                },
                 "filterManager": Object {
                   "addFilters": [MockFunction],
                   "getAppFilters": [MockFunction],
@@ -5459,10 +5648,19 @@ exports[`Dashboard top nav render with all components 1`] = `
                 },
                 "getOpenSearchQuery": [MockFunction],
                 "queryString": Object {
+                  "addToQueryHistory": [MockFunction],
+                  "changeQueryHistory": [MockFunction],
                   "clearQuery": [MockFunction],
+                  "clearQueryHistory": [MockFunction],
                   "formatQuery": [MockFunction],
+                  "getDatasetService": [MockFunction],
                   "getDefaultQuery": [MockFunction],
+                  "getInitialQuery": [MockFunction],
+                  "getInitialQueryByDataset": [MockFunction],
+                  "getInitialQueryByLanguage": [MockFunction],
+                  "getLanguageService": [MockFunction],
                   "getQuery": [MockFunction],
+                  "getQueryHistory": [MockFunction],
                   "getUpdates$": [MockFunction],
                   "setQuery": [MockFunction],
                 },
@@ -5524,14 +5722,9 @@ exports[`Dashboard top nav render with all components 1`] = `
                 "showError": [MockFunction],
               },
               "ui": Object {
-                "DataSetNavigator": [MockFunction],
                 "IndexPatternSelect": [MockFunction],
                 "SearchBar": [MockFunction],
-                "Settings": undefined,
                 "SuggestionsComponent": [MockFunction],
-                "dataSetContainer$": Observable {
-                  "_isScalar": false,
-                },
               },
             },
             "docLinks": Object {
@@ -5944,6 +6137,7 @@ exports[`Dashboard top nav render with all components 1`] = `
             },
             "navigation": Object {
               "ui": Object {
+                "HeaderControl": [Function],
                 "TopNavMenu": [Function],
               },
             },
@@ -6013,9 +6207,29 @@ exports[`Dashboard top nav render with all components 1`] = `
               "remove": [MockFunction],
             },
             "uiSettings": Object {
-              "get": [MockFunction],
+              "get": [MockFunction] {
+                "calls": Array [
+                  Array [
+                    "home:useNewHomePage",
+                  ],
+                  Array [
+                    "home:useNewHomePage",
+                  ],
+                ],
+                "results": Array [
+                  Object {
+                    "type": "return",
+                    "value": undefined,
+                  },
+                  Object {
+                    "type": "return",
+                    "value": undefined,
+                  },
+                ],
+              },
               "get$": [MockFunction],
               "getAll": [MockFunction],
+              "getDefault": [MockFunction],
               "getSaved$": [MockFunction],
               "getUpdate$": [MockFunction],
               "getUpdateErrors$": [MockFunction],
@@ -6042,6 +6256,15 @@ exports[`Dashboard top nav render with all components 1`] = `
               "reportUiStats": [MockFunction],
             },
             "workspaces": Object {
+              "client$": BehaviorSubject {
+                "_isScalar": false,
+                "_value": null,
+                "closed": false,
+                "hasError": false,
+                "isStopped": false,
+                "observers": Array [],
+                "thrownError": null,
+              },
               "currentWorkspace$": BehaviorSubject {
                 "_isScalar": false,
                 "_value": null,
@@ -6117,6 +6340,7 @@ exports[`Dashboard top nav render with all components 1`] = `
         >
           <TopNavMenu
             appName="dashboard"
+            groupActions={false}
             indexPatterns={Array []}
             onQuerySubmit={[Function]}
             onSavedQueryIdChange={[Function]}
@@ -6127,8 +6351,12 @@ exports[`Dashboard top nav render with all components 1`] = `
             showQueryBar={false}
             showQueryInput={false}
             showSaveQuery={true}
-            showSearchBar={true}
+            showSearchBar="in_portal"
             useDefaultBehaviors={true}
+          />
+          <TopNavControls
+            controls={Array []}
+            setMountPoint={[MockFunction]}
           />
         </Memo(TopNav)>
       </Provider>

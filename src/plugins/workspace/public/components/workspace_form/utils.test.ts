@@ -9,10 +9,13 @@ import {
   convertPermissionsToPermissionSettings,
   getNumberOfChanges,
   getNumberOfErrors,
+  isWorkspacePermissionSetting,
 } from './utils';
 import { WorkspacePermissionMode } from '../../../common/constants';
-import { WorkspacePermissionItemType } from './constants';
+import { WorkspacePermissionItemType, optionIdToWorkspacePermissionModesMap } from './constants';
+import { DataSourceConnectionType } from '../../../common/types';
 import { WorkspaceFormErrorCode } from './types';
+import { PermissionModeId } from '../../../../../core/public';
 
 describe('convertPermissionSettingsToPermissions', () => {
   it('should return undefined if permission items not provided', () => {
@@ -161,10 +164,28 @@ describe('validateWorkspaceForm', () => {
       message: 'Name is required. Enter a name.',
     });
   });
+  it('should return error if name is empty string', () => {
+    expect(validateWorkspaceForm({ name: '' }, false).name).toEqual({
+      code: WorkspaceFormErrorCode.WorkspaceNameMissing,
+      message: 'Name is required. Enter a name.',
+    });
+  });
+  it('should return error if name is blank string', () => {
+    expect(validateWorkspaceForm({ name: '   ' }, false).name).toEqual({
+      code: WorkspaceFormErrorCode.WorkspaceNameMissing,
+      message: 'Name is required. Enter a name.',
+    });
+  });
   it('should return error if name is invalid', () => {
     expect(validateWorkspaceForm({ name: '~' }, false).name).toEqual({
       code: WorkspaceFormErrorCode.InvalidWorkspaceName,
       message: 'Name is invalid. Enter a valid name.',
+    });
+  });
+  it('should return error if color is invalid', () => {
+    expect(validateWorkspaceForm({ color: 'QWERTY' }, false).color).toEqual({
+      code: WorkspaceFormErrorCode.InvalidColor,
+      message: 'Color is invalid. Enter a valid color.',
     });
   });
   it('should return error if use case is empty', () => {
@@ -319,15 +340,17 @@ describe('validateWorkspaceForm', () => {
       validateWorkspaceForm(
         {
           name: 'test',
-          selectedDataSources: [
+          selectedDataSourceConnections: [
             {
               id: '',
-              title: 'title',
+              name: 'title',
+              connectionType: DataSourceConnectionType.OpenSearchConnection,
+              type: 'OpenSearch',
             },
           ],
         },
         false
-      ).selectedDataSources
+      ).selectedDataSourceConnections
     ).toEqual({
       0: { code: WorkspaceFormErrorCode.InvalidDataSource, message: 'Invalid data source' },
     });
@@ -338,19 +361,23 @@ describe('validateWorkspaceForm', () => {
       validateWorkspaceForm(
         {
           name: 'test',
-          selectedDataSources: [
+          selectedDataSourceConnections: [
             {
               id: 'id',
-              title: 'title1',
+              name: 'title1',
+              connectionType: DataSourceConnectionType.OpenSearchConnection,
+              type: 'OpenSearch',
             },
             {
               id: 'id',
-              title: 'title2',
+              name: 'title2',
+              connectionType: DataSourceConnectionType.OpenSearchConnection,
+              type: 'OpenSearch',
             },
           ],
         },
         false
-      ).selectedDataSources
+      ).selectedDataSourceConnections
     ).toEqual({
       '1': { code: WorkspaceFormErrorCode.DuplicateDataSource, message: 'Duplicate data sources' },
     });
@@ -361,7 +388,7 @@ describe('getNumberOfErrors', () => {
   it('should calculate the error number of data sources form', () => {
     expect(
       getNumberOfErrors({
-        selectedDataSources: {
+        selectedDataSourceConnections: {
           0: { code: WorkspaceFormErrorCode.InvalidDataSource, message: 'Invalid data source' },
         },
       })
@@ -381,6 +408,18 @@ describe('getNumberOfErrors', () => {
       })
     ).toEqual(1);
   });
+
+  it('should return consistent color errors count', () => {
+    expect(
+      getNumberOfErrors({
+        name: {
+          code: WorkspaceFormErrorCode.InvalidColor,
+          message: '',
+        },
+      })
+    ).toEqual(1);
+  });
+
   it('should return consistent permission settings errors count', () => {
     expect(
       getNumberOfErrors({
@@ -445,6 +484,32 @@ describe('getNumberOfChanges', () => {
         {
           name: 'foo',
           description: 'bar',
+        }
+      )
+    ).toEqual(1);
+  });
+  it('should return consistent color changes count', () => {
+    expect(
+      getNumberOfChanges(
+        {
+          name: 'foo',
+          color: '#000',
+        },
+        {
+          name: 'foo',
+          color: '#000',
+        }
+      )
+    ).toEqual(0);
+    expect(
+      getNumberOfChanges(
+        {
+          name: 'foo',
+          color: '#000',
+        },
+        {
+          name: 'foo',
+          color: '#001',
         }
       )
     ).toEqual(1);
@@ -559,5 +624,74 @@ describe('getNumberOfChanges', () => {
         }
       )
     ).toEqual(3);
+  });
+});
+
+describe('isWorkspacePermissionSetting', () => {
+  it('should return true for a valid user permission setting', () => {
+    const validUserPermissionSetting = {
+      modes: optionIdToWorkspacePermissionModesMap[PermissionModeId.Read],
+      type: WorkspacePermissionItemType.User,
+      userId: 'user123',
+    };
+    const result = isWorkspacePermissionSetting(validUserPermissionSetting);
+    expect(result).toBe(true);
+  });
+
+  it('should return true for a valid group permission setting', () => {
+    const validGroupPermissionSetting = {
+      modes: optionIdToWorkspacePermissionModesMap[PermissionModeId.Owner],
+      type: WorkspacePermissionItemType.Group,
+      group: 'group456',
+    };
+    const result = isWorkspacePermissionSetting(validGroupPermissionSetting);
+    expect(result).toBe(true);
+  });
+
+  it('should return false if modes is missing', () => {
+    const permissionSettingWithoutModes = {
+      type: WorkspacePermissionItemType.User,
+      userId: 'user123',
+    };
+    const result = isWorkspacePermissionSetting(permissionSettingWithoutModes);
+    expect(result).toBe(false);
+  });
+
+  it('should return false if modes are invalid', () => {
+    const permissionSettingWithInvalidModes = {
+      modes: ['invalid' as WorkspacePermissionMode],
+      type: WorkspacePermissionItemType.User,
+      userId: 'user123',
+    };
+    const result = isWorkspacePermissionSetting(permissionSettingWithInvalidModes);
+    expect(result).toBe(false);
+  });
+
+  it('should return false if type is invalid', () => {
+    const permissionSettingWithInvalidType = {
+      modes: optionIdToWorkspacePermissionModesMap[PermissionModeId.Owner],
+      type: 'invalid',
+      userId: 'user123',
+    };
+    const result = isWorkspacePermissionSetting(permissionSettingWithInvalidType);
+    expect(result).toBe(false);
+  });
+
+  it('should return false if userId is missing for user type', () => {
+    const permissionSettingWithoutUserId = {
+      modes: optionIdToWorkspacePermissionModesMap[PermissionModeId.Owner],
+      type: WorkspacePermissionItemType.User,
+    };
+    const result = isWorkspacePermissionSetting(permissionSettingWithoutUserId);
+    expect(result).toBe(false);
+  });
+
+  it('should return false if group is missing for group type', () => {
+    const permissionSettingWithoutGroup = {
+      modes: optionIdToWorkspacePermissionModesMap[PermissionModeId.Owner],
+      type: WorkspacePermissionItemType.Group,
+    };
+    const result = isWorkspacePermissionSetting(permissionSettingWithoutGroup);
+    expect(result).toBe(false);
   });
 });

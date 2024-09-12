@@ -46,8 +46,9 @@ import {
 } from './service';
 
 import { ManagementSetup } from '../../management/public';
-import { DEFAULT_NAV_GROUPS, AppStatus, DEFAULT_APP_CATEGORIES } from '../../../core/public';
+import { AppStatus, DEFAULT_NAV_GROUPS } from '../../../core/public';
 import { getScopedBreadcrumbs } from '../../opensearch_dashboards_react/public';
+import { NavigationPublicPluginStart } from '../../navigation/public';
 
 export interface IndexPatternManagementSetupDependencies {
   management: ManagementSetup;
@@ -57,6 +58,7 @@ export interface IndexPatternManagementSetupDependencies {
 
 export interface IndexPatternManagementStartDependencies {
   data: DataPublicPluginStart;
+  navigation: NavigationPublicPluginStart;
   dataSource?: DataSourcePluginStart;
 }
 
@@ -68,6 +70,9 @@ const sectionsHeader = i18n.translate('indexPatternManagement.indexPattern.secti
   defaultMessage: 'Index patterns',
 });
 
+/**
+ * The id is used in src/plugins/workspace/public/plugin.ts and please change that accordingly if you change the id here.
+ */
 const IPM_APP_ID = 'indexPatterns';
 
 export class IndexPatternManagementPlugin
@@ -137,6 +142,9 @@ export class IndexPatternManagementPlugin
     core.application.register({
       id: IPM_APP_ID,
       title: sectionsHeader,
+      description: i18n.translate('indexPatternManagement.indexPattern.description', {
+        defaultMessage: 'Manage index patterns to retrieve data from OpenSearch.',
+      }),
       status: core.chrome.navGroup.getNavGroupEnabled()
         ? AppStatus.accessible
         : AppStatus.inaccessible,
@@ -159,45 +167,23 @@ export class IndexPatternManagementPlugin
       },
     });
 
-    core.chrome.navGroup.addNavLinksToGroup(DEFAULT_NAV_GROUPS.analytics, [
-      {
-        id: IPM_APP_ID,
-        category: DEFAULT_APP_CATEGORIES.manage,
-        order: 200,
-      },
-    ]);
-
-    core.chrome.navGroup.addNavLinksToGroup(DEFAULT_NAV_GROUPS.observability, [
-      {
-        id: IPM_APP_ID,
-        category: DEFAULT_APP_CATEGORIES.manage,
-        order: 200,
-      },
-    ]);
-
-    core.chrome.navGroup.addNavLinksToGroup(DEFAULT_NAV_GROUPS.search, [
-      {
-        id: IPM_APP_ID,
-        category: DEFAULT_APP_CATEGORIES.manage,
-        order: 200,
-      },
-    ]);
-
-    core.chrome.navGroup.addNavLinksToGroup(DEFAULT_NAV_GROUPS['security-analytics'], [
-      {
-        id: IPM_APP_ID,
-        category: DEFAULT_APP_CATEGORIES.manage,
-        order: 200,
-      },
-    ]);
-
-    core.chrome.navGroup.addNavLinksToGroup(DEFAULT_NAV_GROUPS.all, [
-      {
-        id: IPM_APP_ID,
-        category: DEFAULT_APP_CATEGORIES.manage,
-        order: 200,
-      },
-    ]);
+    core.getStartServices().then(([coreStart]) => {
+      /**
+       * The `capabilities.workspaces.enabled` indicates
+       * if workspace feature flag is turned on or not and
+       * the global index pattern management page should only be registered
+       * to settings and setup when workspace is turned off,
+       */
+      if (!coreStart.application.capabilities.workspaces.enabled) {
+        core.chrome.navGroup.addNavLinksToGroup(DEFAULT_NAV_GROUPS.settingsAndSetup, [
+          {
+            id: IPM_APP_ID,
+            title: sectionsHeader,
+            order: 400,
+          },
+        ]);
+      }
+    });
 
     return this.indexPatternManagementService.setup({ httpClient: core.http });
   }
