@@ -25,9 +25,8 @@ import {
   QueryEnhancementsPluginSetup,
   QueryEnhancementsPluginSetupDependencies,
   QueryEnhancementsPluginStart,
-  QueryEnhancementsPluginStartDependencies,
 } from './types';
-import { OpenSearchObservabilityPlugin, OpenSearchPPLPlugin } from './utils';
+import { OpenSearchEnhancements } from './utils';
 import { pplRawSearchStrategyProvider } from './search/ppl_raw_search_strategy';
 
 export class QueryEnhancementsPlugin
@@ -43,13 +42,12 @@ export class QueryEnhancementsPlugin
     this.logger.debug('queryEnhancements: Setup');
     const router = core.http.createRouter();
     // Register server side APIs
-    const client = core.opensearch.legacy.createClient('opensearch_observability', {
-      plugins: [OpenSearchPPLPlugin, OpenSearchObservabilityPlugin],
+    const client = core.opensearch.legacy.createClient('opensearch_enhancements', {
+      plugins: [OpenSearchEnhancements],
     });
 
     if (dataSource) {
-      dataSource.registerCustomApiSchema(OpenSearchPPLPlugin);
-      dataSource.registerCustomApiSchema(OpenSearchObservabilityPlugin);
+      dataSource.registerCustomApiSchema(OpenSearchEnhancements);
     }
 
     const pplSearchStrategy = pplSearchStrategyProvider(this.config$, this.logger, client);
