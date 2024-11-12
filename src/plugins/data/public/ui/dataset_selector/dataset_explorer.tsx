@@ -3,8 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
+  EuiBadge,
   EuiButton,
   EuiButtonEmpty,
   EuiFlexGroup,
@@ -46,6 +47,10 @@ export const DatasetExplorer = ({
   const [explorerDataset, setExplorerDataset] = useState<BaseDataset | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(false);
   const datasetService = queryString.getDatasetService();
+
+  const defaultDataSource = useMemo(() => {
+    return uiSettings.get('defaultDataSource');
+  }, [uiSettings]);
 
   const fetchNextDataStructure = async (
     nextPath: DataStructure[],
@@ -188,7 +193,14 @@ export const DatasetExplorer = ({
                       value: child.id,
                       prepend: child.meta?.type === DATA_STRUCTURE_META_TYPES.TYPE &&
                         child.meta?.icon && <EuiIcon {...child.meta.icon} />,
-                      append: appendIcon(child),
+                      append: [
+                        defaultDataSource && child.id === defaultDataSource && (
+                          <EuiBadge iconSide="left" style={{ marginRight: '12px' }}>
+                            Default
+                          </EuiBadge>
+                        ),
+                        appendIcon(child),
+                      ],
                       checked: isChecked(child, index, path, explorerDataset),
                     }))}
                     onChange={(options) => {
