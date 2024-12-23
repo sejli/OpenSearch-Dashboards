@@ -42,6 +42,7 @@ env:
 jobs:
   cypress-tests:
     runs-on: ubuntu-latest
+    environment: flint-test
     container:
       image: docker://opensearchstaging/ci-runner:ci-runner-rockylinux8-opensearch-dashboards-integtest-v2
       options: --user 1001
@@ -112,7 +113,6 @@ jobs:
 
       - name: Run Dashboards Cypress tests with query enhancements
         uses: cypress-io/github-action@v6
-        environment: flint-test
         env:
           S3_CONNECTION_URL: ${{ secrets.S3_CONNECTION_URL }}
           S3_CONNECTION_USERNAME: ${{ secrets.S3_CONNECTION_USERNAME }}
