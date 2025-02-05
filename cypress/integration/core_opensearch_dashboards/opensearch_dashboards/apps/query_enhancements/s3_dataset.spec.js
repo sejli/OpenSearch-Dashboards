@@ -10,7 +10,7 @@ import {
 } from '../../../../../utils/apps/query_enhancements/constants';
 import { getRandomizedWorkspaceName } from '../../../../../utils/apps/query_enhancements/shared';
 
-const workspace = getRandomizedWorkspaceName();
+const workspaceName = getRandomizedWorkspaceName();
 
 let dataSourceId = '';
 const definedS3Variables = !S3_CLUSTER.url;
@@ -85,12 +85,17 @@ const definedS3Variables = !S3_CLUSTER.url;
     describe('Run S3 Query', () => {
       beforeEach(() => {
         // Create workspace
-        cy.deleteWorkspaceByName(workspace);
+        cy.deleteWorkspaceByName(workspaceName);
         cy.visit('/app/home');
-        cy.osd.createInitialWorkspaceWithDataSource(S3_CLUSTER.name, WORKSPACE_NAME);
+        cy.osd.createInitialWorkspaceWithDataSource(S3_CLUSTER.name, workspaceName);
+        cy.navigateToWorkSpaceSpecificPage({
+          workspaceName,
+          page: 'discover',
+          isEnhancement: true,
+        });
       });
       afterEach(() => {
-        cy.deleteWorkspaceByName(workspace);
+        cy.deleteWorkspaceByName(workspaceName);
       });
 
       it('with SQL', function () {
