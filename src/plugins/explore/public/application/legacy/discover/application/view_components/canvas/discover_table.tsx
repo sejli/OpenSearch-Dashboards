@@ -27,15 +27,16 @@ import { ExploreServices } from '../../../../../../types';
 import { DataGridTable } from '../../components/data_grid/data_grid_table';
 import { popularizeField } from '../../helpers/popularize_field';
 import { filterColumns } from '../utils/filter_columns';
-import { ResultStatus } from '../utils';
+import { ResultStatus, SearchData } from '../utils';
 
 interface Props {
   scrollToTop?: () => void;
   cacheKey?: string;
   results?: any;
+  fetchState?: SearchData;
 }
 
-export const DiscoverTable = ({ scrollToTop, cacheKey, results: passedResults }: Props) => {
+export const DiscoverTable = ({ scrollToTop, cacheKey, results: passedResults, fetchState }: Props) => {
   const { services } = useOpenSearchDashboards<ExploreServices>();
   const { uiSettings, capabilities } = services;
   const indexPatterns = services.data?.indexPatterns;
@@ -87,9 +88,10 @@ export const DiscoverTable = ({ scrollToTop, cacheKey, results: passedResults }:
       columns,
       indexPattern,
       uiSettings.get(DEFAULT_COLUMNS_SETTING),
-      uiSettings.get(MODIFY_COLUMNS_ON_SWITCH)
+      uiSettings.get(MODIFY_COLUMNS_ON_SWITCH),
+      fetchState?.fieldCounts
     );
-  }, [columns, indexPattern, uiSettings]);
+  }, [columns, fetchState, indexPattern, uiSettings]);
 
   const sort = useSelector((state: any) => {
     return state.legacy?.sort || [];
