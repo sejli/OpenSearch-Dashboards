@@ -35,7 +35,7 @@ import { GetConfigFn } from '../../../types';
 /**
  * @internal
  *
- * This type is used when flattenning a SearchSource and passing it down to legacy search.
+ * This type is used when flattening a SearchSource and passing it down to legacy search.
  * Once legacy search is removed, this type should become internal to `SearchSource`,
  * where `ISearchRequestParams` is used externally instead.
  */
