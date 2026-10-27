@@ -132,6 +132,10 @@ const getVisualizationMetadata = (visualization?: string): VisualizationMetadata
   }
 };
 
+/** DQL and Lucene, which are sent as OpenSearch query DSL. */
+const isDslLanguage = (language: string) =>
+  language === 'kuery' || language.toLowerCase() === 'lucene';
+
 const UNSAVED_DASHBOARD_CROSSHAIR_GROUP = 'dashboard-unsaved';
 
 export const getCrosshairGroup = (
@@ -148,6 +152,7 @@ export class ExploreEmbeddable
   private inspectorAdaptors: Adapters;
   private searchProps?: SearchProps;
   private filtersSearchSource?: ISearchSource;
+  private timeRangeSearchSource?: ISearchSource;
   private subscription: Subscription;
   private autoRefreshFetchSubscription?: Subscription;
   private panelMetadataVariableSubscription?: Subscription;
@@ -363,6 +368,7 @@ export class ExploreEmbeddable
       title: this.savedExplore.title,
     };
     const timeRangeSearchSource = searchSource.create();
+    this.timeRangeSearchSource = timeRangeSearchSource;
     timeRangeSearchSource.setField('filter', () => {
       if (!this.searchProps || !this.input.timeRange) return;
       return getTime(indexPattern, this.input.timeRange);
@@ -570,6 +576,14 @@ export class ExploreEmbeddable
     this.searchProps.isLoading = true;
     this.searchProps.error = undefined;
     const query = searchSource.getField('query');
+    // Languages that put the time range into the query text read it from the request rather than
+    // from the range filter above, so pass the panel's own range (which may differ from the
+    // global time range). It is set on the unsaved parent so it never ends up in the saved
+    // object, and only for non-DSL languages, which the DSL request body would reject.
+    this.timeRangeSearchSource?.setField(
+      'timeRange',
+      query && !isDslLanguage(query.language) ? this.input.timeRange : undefined
+    );
     const languageConfig = this.services.data.query.queryString
       .getLanguageService()
       .getLanguage(query!.language);

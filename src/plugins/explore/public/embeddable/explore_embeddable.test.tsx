@@ -378,6 +378,49 @@ describe('ExploreEmbeddable', () => {
     expect(embeddable.getOutput().error).toBeUndefined();
   });
 
+  test("passes the panel's time range to the request on a non-DSL language", async () => {
+    // @ts-ignore - accessing private property for testing
+    const timeRangeSearchSource = embeddable.timeRangeSearchSource;
+
+    // Without its own range, the panel inherits the dashboard's.
+    container.updateInput({ timeRange: { from: 'now-15m', to: 'now' } });
+    // @ts-ignore
+    await embeddable.fetch();
+    expect(timeRangeSearchSource?.setField).toHaveBeenLastCalledWith('timeRange', {
+      from: 'now-15m',
+      to: 'now',
+    });
+
+    // A custom panel range overrides it.
+    embeddable.updateInput({ timeRange: { from: 'now-1h', to: 'now' } });
+    // @ts-ignore
+    await embeddable.fetch();
+    expect(timeRangeSearchSource?.setField).toHaveBeenLastCalledWith('timeRange', {
+      from: 'now-1h',
+      to: 'now',
+    });
+
+    // The saved search source itself never gets it.
+    expect(mockSavedExplore.searchSource.setField).not.toHaveBeenCalledWith(
+      'timeRange',
+      expect.anything()
+    );
+  });
+
+  test('does not pass a time range for a DSL language', async () => {
+    mockSavedExplore.searchSource.getField.mockImplementation((field: string) => {
+      if (field === 'index') return { id: 'test-index' };
+      if (field === 'query') return { query: 'a:b', language: 'kuery' };
+      return null;
+    });
+    container.updateInput({ timeRange: { from: 'now-15m', to: 'now' } });
+    // @ts-ignore - accessing private property for testing
+    const timeRangeSearchSource = embeddable.timeRangeSearchSource;
+    // @ts-ignore
+    await embeddable.fetch();
+    expect(timeRangeSearchSource?.setField).toHaveBeenLastCalledWith('timeRange', undefined);
+  });
+
   test('reload calls updateHandler with force=true', () => {
     // @ts-ignore
     const spy = jest.spyOn(embeddable as any, 'updateHandler').mockResolvedValue(undefined);
