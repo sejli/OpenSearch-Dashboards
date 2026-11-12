@@ -7,7 +7,7 @@ exports[`CreateButton should render normally 1`] = `
   onClick={[Function]}
 >
   <FormattedMessage
-    defaultMessage="Create data source connection"
+    defaultMessage="Create data connection"
     id="dataSourcesManagement.dataSourceListing.createDataSourceButton"
     values={Object {}}
   />

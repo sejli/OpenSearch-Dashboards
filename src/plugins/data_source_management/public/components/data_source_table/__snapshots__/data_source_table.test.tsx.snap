@@ -63,12 +63,12 @@ exports[`DataSourceTable should get datasources failed should render empty table
             className="euiText euiText--small"
           >
             <FormattedMessage
-              defaultMessage="No Data Source Connections have been created yet."
+              defaultMessage="No data connections have been created yet."
               id="dataSourcesManagement.dataSourcesTable.noData"
               values={Object {}}
             >
               <span>
-                No Data Source Connections have been created yet.
+                No data connections have been created yet.
               </span>
             </FormattedMessage>
           </div>
@@ -3668,12 +3668,12 @@ exports[`DataSourceTable should not manage datasources when canManageDataSource 
             className="euiText euiText--small"
           >
             <FormattedMessage
-              defaultMessage="No Data Source Connections have been created yet."
+              defaultMessage="No data connections have been created yet."
               id="dataSourcesManagement.dataSourcesTable.noData"
               values={Object {}}
             >
               <span>
-                No Data Source Connections have been created yet.
+                No data connections have been created yet.
               </span>
             </FormattedMessage>
           </div>

@@ -558,7 +558,7 @@ export const DataSourceTable = ({ history }: RouteComponentProps) => {
           <EuiText size="s">
             <FormattedMessage
               id="dataSourcesManagement.dataSourcesTable.noData"
-              defaultMessage="No Data Source Connections have been created yet."
+              defaultMessage="No data connections have been created yet."
             />
           </EuiText>
           <EuiSpacer />

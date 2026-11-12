@@ -30,7 +30,7 @@ export const CreateButton = ({
       {featureFlagStatus ? (
         <FormattedMessage
           id="dataSourcesManagement.dataSourceListing.createDataSourceButton"
-          defaultMessage="Create data source connection"
+          defaultMessage="Create data connection"
         />
       ) : (
         <FormattedMessage
